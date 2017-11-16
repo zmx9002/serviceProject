@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <link type="text/css" rel="stylesheet" href="../style/common.css">
+    <link type="text/css" rel="stylesheet" href="../style/commodity.css">
+</head>
+<body>
+<section id="commodityCon"></section>
+<footer class="commodity-box">
+    <a href="javascript:;" class="J_contact">联系商家</a>
+    <a href="javascript:;" class="J_store_in">进店看看</a>
+    <a href="javascript:;" class="J_addOrder">加入进货单</a>
+    <a href="javascript:;" class="J_addOrder_now">立即下单</a>
+</footer>
+
+<div class="up J_up">
+    <i class="iconfont">&#xe615;</i>
+    <p>返回顶部</p>
+</div>
+
+<div class="pop"></div>
+<div class="pop-con">
+    <div class="stock-order" id="popCon">
+
+    </div>
+    <div class="pop-btn">
+        <a href="javascript:;" class="J_confirm">确定</a>
+    </div>
+</div>
+<!--商品详情模版-->
+<script type="text/html" id="commodityTpl">
+    {{ if json.data }}
+    {{if json.data.storeInfo.hasFollow}}
+    <input type="hidden" value="1" name="hasFollow"/>
+    {{else}}
+    <input type="hidden" value="0" name="hasFollow"/>
+    {{/if}}
+    <input type="hidden" value="{{json.data.storeInfo.storeLogo}}" name="storeLogo"/>
+    <input type="hidden" value="{{json.data.storeInfo.storeName}}" name="storeName"/>
+    <input type="hidden" value="{{json.data.storeInfo.userId}}" name="userId"/>
+
+    <section class="banner-box" data-store-id="{{json.data.storeId}}">
+        <div class="banner">
+            <ul class="pic-list">
+                {{ each json.data.pictureUrls as picItem }}
+                <li><img src="{{picItem}}"/></li>
+                {{/each}}
+            </ul>
+            <div class="pic-mask"><span class="now">1</span>/<i class="banner-total">{{json.data.pictureUrls.length}}</i></div>
+            <a href="javascript:;" class="collect J_collect">{{if json.data.collect}}已收藏{{else}}收藏{{/if}}</a>
+        </div>
+    </section>
+    <section class="shop-info">
+        <div class="name" data-product-id="{{json.data.productId}}">{{json.data.productName}}</div>
+        <div class="price">批发价:<span>&yen;{{json.data.referencePrice}}</span></div>
+        <div class="wholesale">起批数：<span>{{json.data.wholesaleCount}}</span>件起</div>
+    </section>
+    <section class="shop-size">
+        <i>颜色：</i>
+        <div class="size-color">
+            {{if json.data.color == null ||  json.data.color == ''}}
+            <span>均色</span>
+            {{else}}
+            {{each toColor(json.data.color) as colorItem}}
+            <span>{{colorItem}}</span>
+            {{/each}}
+            {{/if}}
+        </div>
+    </section>
+    <section class="shop-size">
+        <i>尺码：</i>
+        <div class="size-color">
+            {{if json.data.size == null || json.data.size == '' }}
+            <span>均码</span>
+            {{else}}
+            {{each toSize(json.data.size) as sizeItem}}
+            <span>{{sizeItem}}</span>
+            {{/each}}
+            {{/if}}
+        </div>
+    </section>
+
+    <section class="shop-container">
+        <p>货号：<span>{{json.data.productCode}}</span></p>
+        <p>材质面料：<span>{{json.data.material}}</span></p>
+        <p>季节：<span>{{json.data.season}}</span></p>
+        <p>简介：</p>
+        <p>{{json.data.introduction}}</p>
+    </section>
+    {{/if}}
+</script>
+<!--弹窗模板-->
+<script type="text/html" id="popTpl">
+    {{if json.data}}
+    <div class="shop">
+        <div class="shop-avatar"><img src="{{json.data.pictureUrls[0]}}"/></div>
+        <div class="shop-name">
+            <h3>{{json.data.productName}}</h3>
+            <p>货号:{{json.data.productCode}}  批发价：<span class="size-price">&yen;<i>{{json.data.referencePrice}}</i></span></p>
+        </div>
+        <a href="javascript:;" class="close J_close"><i class="iconfont">&#xe617;</i></a>
+    </div>
+    <div class="pop-srcoll">
+        <div class="color">
+            <h3>颜色</h3>
+            {{if json.data.color != null && json.data.color != ''}}
+                <ul class="color-tag">
+                    {{each toColor(json.data.color) as colorItem}}
+                    <li><span class="color-name">{{colorItem}}</span><span class="tips">0</span></li>
+                    {{/each}}
+                </ul>
+            {{else}}
+            <ul class="color-tag">
+                <li class="active">
+                    <span class="color-name">均色</span>
+                    <span class="tips">0</span>
+                </li>
+            </ul>
+            <a href="javascript:;" class="add-color J_add_color"> + 添加自定义颜色</a>
+            {{/if}}
+        </div>
+        <div class="size">
+            <h3>尺码</h3>
+            {{if json.data.color != null && json.data.color != ''}}
+            {{each toColor(json.data.color) as colorItem}}
+            {{if json.data.size != null && json.data.size != ''}}
+                {{each json.data.size}}
+                <ul class="size-list">
+                    {{each toSize(json.data.size) as sizeItem}}
+                    <li>
+                        <div class="size-left">{{sizeItem}}</div>
+                        <div class="size-right">
+                            <a href="javascript:;" class="size-sub J_sub">-</a>
+                            <input type="number" value="" name="number" placeholder="0" class="size-num"/>
+                            <a href="javascript:;" class="size-add J_add">+</a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+                {{/each}}
+            {{else}}
+                <ul class="size-list active">
+                    <li>
+                        <div class="size-left">均码</div>
+                        <div class="size-right">
+                            <a href="javascript:;" class="size-sub J_sub">-</a>
+                            <input type="number" value="" name="number" placeholder="0" class="size-num"/>
+                            <a href="javascript:;" class="size-add J_add">+</a>
+                        </div>
+                    </li>
+                    <a href="javascript:;" class="add-size J_add_size"> + 添加自定义尺码</a>
+                </ul>
+            {{/if}}
+            {{/each}}
+            {{/if}}
+        </div>
+        <div class="total">
+            共<span class="total-num">0</span>件,<span class="total-price">0.00</span>元
+        </div>
+    </div>
+    {{/if}}
+</script>
+<script type="text/javascript" src="../plugins/zepto.js"></script>
+<script type="text/javascript" src="../js/size.js"></script>
+<script type="text/javascript" src="../plugins/fastclick.min.js"></script>
+<script type="text/javascript" src="../plugins/teamlate.js"></script>
+<script type="text/javascript" src="../plugins/layer_mobile/layer.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/commodity.js"></script>
+</body>
+</html>

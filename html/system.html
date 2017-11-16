@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title>我的消息</title>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <link type="text/css" rel="stylesheet" href="../style/system.css">
+    <script type="text/javascript" src="../js/pulgins.js"></script>
+    <script type="text/javascript" src="../js/system.js"></script>
+</head>
+<body>
+<section class="system-box">
+    <ul id="messagesCon">
+
+    </ul>
+</section>
+<script type="text/html" id="messagesTpl">
+    {{if json.data && json.data.content}}
+    {{each json.data.content as item}}
+    <li>
+        <div class="time">{{toTime(item.createTime)}}</div>
+        <div class="messages-box">
+            {{if item.status == 1}}
+            <div class="messages">已向<span>{{item.storeName}}</span>发送访问申请,请等待</div>
+            <div class="state orange">请等待</div>
+            {{else if item.status == 2}}
+            <div class="messages"><span>{{item.storeName}}</span>同意了您的访问</div>
+            <div class="state blue">已同意{{item.agreeDay}}天</div>
+            {{else if item.status == 3}}
+            <div class="messages"><span>{{item.storeName}}</span>拒绝了您的访问</div>
+            <div class="state red">已拒绝</div>
+            {{/if}}
+        </div>
+    </li>
+    {{/each}}
+    {{/if}}
+</script>
+</body>
+</html>

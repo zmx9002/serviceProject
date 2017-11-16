@@ -1,0 +1,38 @@
+@charset "utf-8";
+#commodityList{
+    overflow: hidden;
+    padding-bottom: 1.2rem;
+}
+.commodity-list-box{
+    margin-top: .2rem;
+}
+.commodity-list-box li{
+    height: 1.6rem;
+    width: 100%;
+    background: #fff;
+    margin-bottom: .02rem;
+    padding: .2rem;
+    overflow: hidden;
+}
+.commodity-list-box .avatar{
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    overflow: hidden;
+    float: left;
+}
+.commodity-list-box .avatar img{
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+}
+.commodity-list-box .shop{
+    width: 5rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    float: left;
+    margin-left: .26rem;
+}

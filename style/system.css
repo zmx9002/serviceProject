@@ -1,0 +1,50 @@
+@charset "utf-8";
+.system-box{
+    padding: 0 .2rem;
+}
+.system-box .time{
+    height: .6rem;
+    line-height: .6rem;
+    text-align: center;
+    margin-top: .12rem;
+    font-size: .24rem;
+    color: #ccc;
+}
+.messages-box{
+    background:#fff;
+    padding: .2rem .24rem;
+}
+.messages{
+    width: 100%;
+    max-height: 1.35rem;
+    display:-webkit-box;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    word-break:break-all;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:3;
+    font-size: .28rem;
+    color: #666;
+    line-height: .45rem;
+}
+.state{
+    margin-top: .28rem;
+    border-top: 1px solid #eee;
+    line-height: .6rem;
+}
+.orange{
+    color: #ff7133;
+}
+.grey{
+    color: #666;
+}
+.blue{
+    color: #00aafb;
+}
+.red{
+    color: #fb4276;
+}
+.fr{
+    float: right;
+    font-size: .2rem;
+}

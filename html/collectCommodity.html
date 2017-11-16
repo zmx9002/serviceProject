@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title>我收藏的商品</title>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <script type="text/javascript" src="../js/pulgins.js"></script>
+    <script type="text/javascript" src="../js/collectCommodity.js"></script>
+    <style>
+        .commodity-list{
+            display: block;
+            width: 100%;
+            overflow: hidden;
+        }
+        .commodity-list li{
+            width: 9.5rem;
+        }
+        .delete{
+            display: block;
+            float: right;
+            height: 2rem;
+            width:2rem;
+            background: #fb4276;
+            text-align: center;
+            line-height: 2rem;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<section  class="content">
+    <ul class="commodity-list" id="commodityList"></ul>
+</section>
+
+<div class="up J_up">
+    <i class="iconfont">&#xe615;</i>
+    <p>返回顶部</p>
+</div>
+
+<script type="text/html" id="commodityListTpl">
+    {{if json.data && json.data.content}}
+        {{each json.data.content as item}}
+        {{if item.product}}
+        <li data-product-id="{{item.productId}}">
+            <div class="avatar"><img src="{{item.product.pictureUrl}}"/></div>
+            <div class="shop">
+                <h3>{{item.product.productName}}</h3>
+                <p>货号:{{item.product.productCode}}</p>
+                <p class="price">
+                    批发价:<span>{{item.product.referencePrice}}</span>
+                </p>
+            </div>
+            <a href="javascript:;" class="delete J_delete">取消收藏</a>
+        </li>
+        {{/if}}
+        {{/each}}
+    {{/if}}
+</script>
+</body>
+</html>

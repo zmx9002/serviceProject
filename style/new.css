@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+.time-box{
+    height: 1rem;
+    background: #ff7133;
+    text-align: center;
+    color: #666;
+}
+.time-box input{
+    width: 2.8rem;
+    height: .6rem;
+    margin-top: .16rem;
+    text-align: center;
+}
+.time-box .date-confirm{
+    display: inline-block;
+    width: 1rem;
+    height: .58rem;
+    text-align: center;
+    line-height: .58rem;
+    color: #ff7133;
+    background: #fff;
+    font-size: .28rem;
+    margin: .2rem auto;
+}
+.tab{
+    height: .9rem;
+    background: #fff;
+    overflow: hidden;
+}
+.tab a{
+    display: block;
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    line-height: .9rem;
+    color: #666;
+    font-size: .28rem;
+}
+.tab a.active{
+    color: #ff7133;
+}

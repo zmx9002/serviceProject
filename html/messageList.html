@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title>消息</title>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <link type="text/css" rel="stylesheet" href="../style/messageList.css">
+    <script type="text/javascript" src="../js/pulgins.js"></script>
+    <script type="text/javascript" src="../plugins/jquery.md5.js"></script>
+    <script type="text/javascript" src="../plugins/jmessage-sdk-web.2.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/messageList.js"></script>
+</head>
+<body>
+<div class="system J_system">
+    <div class="avatar"><img src="../images/system.jpg"/></div>
+    <div class="msg">
+        <h3 class="name">我的消息</h3>
+    </div>
+</div>
+<section class="message-list">
+    <ul id="messagesListCon"></ul>
+</section>
+
+<footer class="main-footer">
+    <a href="../html/index.html">
+        <i class="iconfont hover">&#xe614;</i>
+        <p>首页</p>
+    </a>
+    <a href="../html/orderList.html">
+        <i class="iconfont">&#xe613;</i>
+        <p>进货单</p>
+    </a>
+    <a href="../html/messageList.html" class="active">
+        <i class="iconfont">&#xe610;</i>
+        <p>消息</p>
+    </a>
+    <a href="../html/mine.html">
+        <i class="iconfont">&#xe612;</i>
+        <p>我的</p>
+    </a>
+</footer>
+<script type="text/html" id="messagesListTpl">
+    {{if json.data && json.data.content}}
+    <ul>
+        {{if json.data.content}}
+        {{each json.data.content as item}}
+        <li class="J_message" data-user-id="{{item.store.userId}}">
+            <div class="avatar"><img src="{{item.store.logo}}" class="logo"/></div>
+            <div class="msg">
+                <h3 class="name">{{item.store.storeName}}</h3>
+            </div>
+        </li>
+        {{/each}}
+        {{/if}}
+    </ul>
+    {{/if}}
+</script>
+</body>
+</html>

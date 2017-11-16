@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title>商品</title>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <link type="text/css" rel="stylesheet" href="../style/commodityList.css">
+</head>
+<body>
+<section class="commodity-search">
+    <a href="category.html" class="search-btn J_search_btn">搜索店铺、商品</a>
+    <i class="iconfont J_change1">&#xe616;</i>
+    <i class="iconfont J_change2">&#xe618;</i>
+</section>
+<section class="content">
+    <div id="commodityList"></div>
+</section>
+
+<div class="up J_up">
+    <i class="iconfont">&#xe615;</i>
+    <p>返回顶部</p>
+</div>
+
+<script type="text/html" id="commodityListTpl">
+    {{if json.data && json.data.content}}
+    <ul class="shop-list-box">
+        {{each json.data.content as item}}
+        <li data-product-id="{{item.productId}}">
+            <div class="avatar"><img src="{{item.pictureUrl}}"/></div>
+            <div class="shop">
+                <h3>{{item.productName}}</h3>
+                <p>货号:{{item.productCode}}</p>
+                <p class="price">
+                    批发价:<span>{{item.referencePrice}}</span>
+                </p>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</script>
+
+<script type="text/html" id="massListTpl">
+    {{if json.data }}
+    <ul class="shop-list-box">
+        {{each json.data as item}}
+        <li data-product-id="{{item.productId}}">
+            <div class="avatar"><img src="{{item.pictureUrls[0]}}"/></div>
+            <div class="shop">
+                <h3>{{item.productName}}</h3>
+                <p>货号:{{item.productCode}}</p>
+                <p class="price">
+                    批发价:<span>{{item.referencePrice}}</span>
+                </p>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</script>
+<script type="text/javascript" src="../js/pulgins.js"></script>
+<script type="text/javascript" src="../js/commodityList.js"></script>
+</body>
+</html>

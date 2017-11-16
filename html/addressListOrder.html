@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <title>收货地址</title>
+    <link type="text/css" rel="stylesheet" href="../style/orderAddress.css">
+    <script type="text/javascript" src="../js/pulgins.js"></script>
+</head>
+<body>
+    <section id="addressCon">
+
+    </section>
+<script type="text/html" id="addressTpl">
+    {{if json.data && json.data.addressList.length > 0}}
+    {{each json.data.addressList as item}}
+    <div class="address-list" data-address-id="{{item.addressId}}">
+        <div class="address-left">
+            <p>收  件 人：<span class="address-name">{{item.contactName}}</span></p>
+            <p>联系电话：<a href="javascript:;" class="address-mobile">{{item.contactMobile}}</a></p>
+            <p>
+                {{if item.isDefault == 1}}
+                <i class="isDefault">默认</i>
+                {{/if}}
+                收货地址：<span class="address-city">{{item.address}}</span><span class="address-full">{{item.fullAddress}}</span></p>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="no-data">暂无地址，请去“我的 —— 收货地址”添加！</div>
+    {{/if}}
+</script>
+<script type="text/javascript">
+    var data = {
+        method:'query.receiving.address',
+        params:{
+            token:sessionStorage.getItem('token')
+        },
+        version:localStorage.getItem('version')
+    };
+    $.ajax({
+        type:'post',
+        url:'http://106.15.205.55/order',
+        data:JSON.stringify(data),
+        success:function(result){
+            var html = template('addressTpl',{json:result});
+            $('#addressCon').html(html);
+        }
+    });
+
+    $(document).on('click','.address-list',function(){
+        var url = window.location.href;
+        var orders = null;
+        if(url.indexOf('immediately') != -1){
+            orders = JSON.parse(sessionStorage.getItem('immediately'));
+        }else{
+            orders = JSON.parse(sessionStorage.getItem('orders'));
+        }
+        var addressId = $(this).data('addressId');
+        orders.params.addressId  = addressId;
+        $.ajax({
+            type:'post',
+            url:'http://106.15.205.55/order',
+            data:JSON.stringify(orders),
+        }).done(function(result){
+            if(result.code == 0){
+                sessionStorage.removeItem('orders');
+                sessionStorage.removeItem('immediately');
+                window.location.href = 'orderManage.html';
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

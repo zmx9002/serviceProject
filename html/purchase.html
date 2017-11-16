@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <title>进货单</title>
+    <link type="text/css" rel="stylesheet" href="../style/purshase.css">
+</head>
+<body>
+<section id="orderListCon">
+
+</section>
+<section class="footer">
+    <div class="f_left">
+        <p>共<span class="total-num">0</span>件</p>
+        <p>总计(不含运费)：<span>￥<i class="total-price">0.00</i></span></p>
+    </div>
+    <a href="javascript:;" class="orders f_right J_overbooking">下单</a>
+</section>
+<script type="text/html" id="orderListTpl">
+    {{if json.data}}
+    {{each json.data as item}}
+    <div class="order-box" data-product-id="{{item.productId}}" data-item-id="{{item.itemId}}">
+        <div class="list-box J_commodity_details" data-product-id="{{item.productId}}">
+            <div class="list">
+                <label>
+                    <input type="checkbox" class="f_left J_all_commodity" />
+                    <span></span>
+                </label>
+                <div class="order-commodity">
+                    <div class="commodity-pic f_left"><img src="{{item.pictureUrl}}"/></div>
+                    <div class="commodity-inof f_left">
+                        <h3>{{item.productName}}</h3>
+                        <p><span><i>￥</i><i class="unit-price">{{item.price}}</i>/件</span></p>
+                    </div>
+                </div>
+                <a href="javascript:;" class="delete J_delete">删除</a>
+            </div>
+        </div>
+        {{each item.colorSizeInfo as subItem}}
+            <div class="color-list">
+                <div class="color-text">
+                    <label>
+                        <input type="checkbox" class="f_left commodity-check-sub J_all_color"/>
+                        <span></span>
+                    </label>
+                    <span class="color-name">{{subItem.color}}</span>
+                </div>
+                {{ each subItem.size as subKey }}
+                <div class="size-list clearfix">
+                    <label>
+                        <input type="checkbox" class="f_left commodity-check-sub J_single"/>
+                        <span></span>
+                    </label>
+                    <div class="size-info f_left">
+                        <div class="single-price f_left">
+                            <p>尺码：<span class="size-name">{{subKey.sizeName}}</span></p>
+                        </div>
+                        <div class="f_right size-number">
+                            <a href="javascript:;" class="sub J_sub">-</a>
+                            <input type="text" value="{{subKey.num}}" class="number"/>
+                            <a href="javascript:;" class="add J_add">+</a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        {{/each}}
+    </div>
+    {{/each}}
+    {{/if}}
+</script>
+<script type="text/javascript" src="../js/pulgins.js"></script>
+<script type="text/javascript" src="../js/purchase.js"></script>
+</body>
+</html>

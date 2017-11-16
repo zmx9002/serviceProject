@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title>店铺简介</title>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <link type="text/css" rel="stylesheet" href="../style/shopIntroduction.css">
+    <script type="text/javascript" src="../js/pulgins.js"></script>
+</head>
+<body>
+<section class="avatar-box">
+    <div class="avatar"><img src=""/></div>
+    <div class="name"></div>
+    <div class="shop-vermicelli">粉丝：<span></span></div>
+    <a href="javascript:;" class="follow J_follow"></a>
+</section>
+<section>
+    <div class="title">店铺信息</div>
+    <ul class="information">
+        <li>店铺地址：<span class="store-address"></span></li>
+        <li>经营类型：<span class="store-type"></span></li>
+        <li>店铺描述：<span class="store-info"></span></li>
+        <li>手机号码：<span class="store-mobile"></span></li>
+    </ul>
+</section>
+<script>
+    $(function(){
+        function getUrlParam(name){
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r!=null) return unescape(r[2]); return null; //返回参数值
+        }
+        getStoreInfo();
+        function getStoreInfo() {
+            var data = {
+                method: 'get.store',
+                params: {
+                    storeId: getUrlParam('storeId'),
+                    token:sessionStorage.getItem('token')
+                },
+                version: localStorage.getItem('version')
+            };
+            //数据渲染
+            $.ajax({
+                type: "post",
+                url: "http://106.15.205.55/official",
+                data: JSON.stringify(data)
+            }).done(function (result) {
+                $('.avatar img').attr('src', result.data.logo);
+                $('.name').text(result.data.storeName);
+                $('.shop-vermicelli span').text(result.data.fansNum);
+                if(result.data.hasFollow){
+                    $('.J_follow').text('已关注');
+                }else{
+                    $('.J_follow').text('关注');
+                }
+                $('.store-address').text(result.data.areaId + result.data.address);
+                $('.store-type').text(result.data.businessLineName);
+                $('.store-info').text(result.data.description);
+                $('.store-mobile').text(result.data.mobile);
+            });
+        }
+    })
+</script>
+</body>
+</html>

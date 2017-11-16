@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title>我关注的店铺</title>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <link type="text/css" rel="stylesheet" href="../style/collectShop.css">
+    <script type="text/javascript" src="../js/pulgins.js"></script>
+    <script type="text/javascript" src="../js/collectShop.js"></script>
+</head>
+<body>
+<section class="content" >
+    <ul class="commodity-list-box" id="commodityList"></ul>
+</section>
+
+<div class="up J_up">
+    <i class="iconfont">&#xe615;</i>
+    <p>返回顶部</p>
+</div>
+<script type="text/html" id="commodityListTpl">
+    {{if json.data && json.data.content}}
+        {{each json.data.content as item}}
+        <li data-store-id="{{item.store.storeId}}">
+            <div class="avatar"><img src="{{item.store.logo}}"/></div>
+            <div class="shop">
+                <h3>{{item.store.storeName}}</h3>
+                <p>{{item.store.businessLineName}}</p>
+            </div>
+            <a href="../html/shopIndex.html?storeId={{item.store.storeId}}" class="in">进店看看</a>
+            <a href="javascript:;" class="delete J_delete">取消关注</a>
+        </li>
+        {{/each}}
+    {{/if}}
+</script>
+</body>
+</html>

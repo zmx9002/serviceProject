@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <title>订单管理</title>
+    <link type="text/css" rel="stylesheet" href="../style/orderManage.css">
+    <script type="text/javascript" src="../js/pulgins.js"></script>
+    <script type="text/javascript" src="../js/orderManage.js"></script>
+</head>
+<body>
+    <section class="order-title">
+        <ul>
+            <li data-state="1">已下单</li>
+            <li data-state="2">待付款</li>
+            <li data-state="3">待发货</li>
+            <li data-state="4">待收货</li>
+            <li data-state="5">已完成</li>
+            <li data-state="6">已取消</li>
+        </ul>
+    </section>
+    <section class="content" id="orderListCon">
+        <div class="tab ordered"></div>
+        <div class="tab unPay"></div>
+        <div class="tab unDeliver"></div>
+        <div class="tab unReceiving"></div>
+        <div class="tab finish"></div>
+        <div class="tab cancel"></div>
+    </section>
+    <div class="up J_up">
+        <i class="iconfont">&#xe615;</i>
+        <p>返回顶部</p>
+    </div>
+<script type="text/html" id="orderListTpl">
+    {{if json.data && json.data.content}}
+    {{each json.data.content as list}}
+    <div class="order-box">
+        <input type="hidden" value="{{list.addressId}}" name="addressId"/>
+        {{if list.address}}
+        <input type="hidden" value="{{list.address.address}}"  name="address"/>
+        <input type="hidden" value="{{list.address.contactName}}" name="contactName"/>
+        <input type="hidden" value="{{list.address.contactMobile}}" name="contactMobile"/>
+        <input type="hidden" value="{{list.address.fullAddress}}" name="fullAddress"/>
+        <input type="hidden" value="{{list.address.createTime}}" name="createTime"/>
+        {{/if}}
+        <input type="hidden" value={{list.deliverTime}}" name="deliverTime"/>
+        <input type="hidden" value="{{list.freight}}"  name="freight"/>
+        <input type="hidden" value="{{list.logisticsWay}}" name="logisticsWay"/>
+        <input type="hidden" value="{{list.logisticsCompany}}" name="logisticsCompany"/>
+        <input type="hidden" value="{{list.logisticsNo}}" name="logisticsNo"/>
+        <input type="hidden" value="{{list.orderTime}}" name="orderTime"/>
+        <input type="hidden" value="{{list.payTime}}"  name="payTime"/>
+        <input type="hidden" value="{{list.confirmTime}}"  name="confirmTime"/>
+        <input type="hidden" value="{{list.payWay}}" name="payWay"/>
+        <input type="hidden" value="{{list.status}}" name="status"/>
+        <input type="hidden" value="{{list.storeId}}"  name="storeId"/>
+        <div class="order-num" data-order-id="{{list.orderId}}">
+            订单编号：<span class="order-no">{{list.orderNo}}</span>
+        </div>
+        <div class="order-name">{{list.storeName}}</div>
+        {{each list.items as subList}}
+        <div class="order-commodity clearfix J_order_details">
+            <div class="commodity-pic f_left"><img src="{{subList.pictureUrl}}"/></div>
+            <div class="commodity-inof f_left">
+                <h3 data-product-id="{{subList.productId}}" class="product-name">{{subList.productName}}</h3>
+                <p>货号:<span class="product-code">{{subList.productCode}}</span></p>
+            </div>
+            <div class="price-box f_right">
+                <h3><span>￥</span><span class="price">{{subList.price}}</span>/件</h3>
+                <p>共<span class="product-total-num"></span>件</p>
+                {{if list.delay}}
+                <span class="goods-state">{{list.delay}}</span>
+                {{/if}}
+            </div>
+        </div>
+        {{each subList.colorSizeInfo as colorList}}
+        <div class="commodity-size-box">
+            <div class="color">{{colorList.color}}</div>
+            {{each colorList.size as sizeList}}
+            <div class="size-info">尺码：<span class="size-name">{{sizeList.sizeName}}</span> <span class="size-num">{{sizeList.num}}</span></div>
+            {{/each}}
+        </div>
+        {{/each}}
+        {{/each}}
+        <div class="order-total">
+            共<span class="product-total-num"></span>件，总计:<span class="red">￥</span><span class="total-price"></span><span class="freight">(运费￥{{if list.freight}}{{list.freight}}{{else}}0.00{{/if}})</span>
+        </div>
+        {{if list.status == 1 || list.status == 2 || list.status == 4}}
+        <div class="order-btn">
+            {{if list.status == 1}}
+            <a href="javascript:;" class="J_cancel_order block">取消订单</a>
+            {{else if list.status == 2}}
+            <a href="javascript:;" class="J_cancel_order block">取消订单</a>
+            <a href="javascript:;" class="J_pay_order orange">付款</a>
+            {{else if list.status == 4}}
+            <a href="javascript:;" class="J_confirm_order orange">确认收货</a>
+            {{else}}
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+    {{/each}}
+    {{/if}}
+</script>
+
+</body>
+</html>

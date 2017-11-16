@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <title>首页</title>
+    <link type="text/css" rel="stylesheet" href="../style/index.css">
+</head>
+<body>
+
+<section class="search">
+    <a href="category.html" class="search-btn J_search_btn">搜索店铺、商品</a>
+</section>
+<section class="link-box">
+    <ul class="clearfix">
+        <li data-business-line-id="10001" data-key-word="潮流女装">
+            <i class="iconfont">&#xe602;</i>
+            <p>潮流女装</p>
+        </li>
+        <li data-business-line-id="10002" >
+            <i class="iconfont">&#xe603;</i>
+            <p>爆版男装</p>
+        </li>
+        <li  data-business-line-id="10003">
+            <i class="iconfont">&#xe604;</i>
+            <p>婴幼童装</p>
+        </li>
+        <li data-business-line-id="10004">
+            <i class="iconfont">&#xe606;</i>
+            <p>可爱童鞋</p>
+        </li>
+        <li data-business-line-id="10005">
+            <i class="iconfont">&#xe601;</i>
+            <p>热批鞋靴</p>
+        </li>
+        <li data-business-line-id="10006">
+            <i class="iconfont">&#xe605;</i>
+            <p>时尚箱包</p>
+        </li>
+        <li data-business-line-id="10007">
+            <i class="iconfont">&#xe607;</i>
+            <p>点睛配饰</p>
+        </li>
+        <li data-business-line-id="10008">
+            <i class="iconfont">&#xe60d;</i>
+            <p>舒适内衣</p>
+        </li>
+        <li data-business-line-id="10009">
+            <i class="iconfont">&#xe609;</i>
+            <p>运动户外</p>
+        </li>
+        <li data-business-line-id="10010">
+            <i class="iconfont">&#xe608;</i>
+            <p>家居家纺</p>
+        </li>
+        <li data-business-line-id="10011">
+            <i class="iconfont">&#xe60a;</i>
+            <p>汽车车品</p>
+        </li>
+        <li data-business-line-id="10012">
+            <i class="iconfont">&#xe60c;</i>
+            <p>美妆百货</p>
+        </li>
+    </ul>
+</section>
+<section class="tab">
+    <a href="javascript:;" data-tab="1">热门店铺</a>
+    <a href="javascript:;" data-tab="2">看商品</a>
+</section>
+<section class="content">
+    <div class="tab-con shop-list">
+        <ul id="shopList"></ul>
+    </div>
+    <div class="tab-con commodity-list">
+        <ul id="commodityList"></ul>
+    </div>
+</section>
+<footer class="main-footer">
+    <a href="../html/index.html" class="active">
+        <i class="iconfont hover">&#xe60e;</i>
+        <p>首页</p>
+    </a>
+    <a href="../html/orderList.html">
+        <i class="iconfont">&#xe613;</i>
+        <p>进货单</p>
+    </a>
+    <a href="../html/messageList.html">
+        <i class="iconfont">&#xe60f;</i>
+        <p>消息</p>
+    </a>
+    <a href="../html/mine.html">
+        <i class="iconfont">&#xe612;</i>
+        <p>我的</p>
+    </a>
+</footer>
+<div class="up J_up">
+    <i class="iconfont">&#xe615;</i>
+    <p>返回顶部</p>
+</div>
+
+<script type="text/html" id="shopListTpl">
+    {{if json.data && json.data.content}}
+    {{each json.data.content as item}}
+    <li data-store-id="{{item.storeId}}">
+        <img src="{{item.storeSign}}"/>
+        <p>{{item.storeName}}</p>
+    </li>
+    {{/each}}
+    {{/if}}
+</script>
+<script type="text/html" id="commodityListTpl">
+    {{if json.data && json.data.content}}
+        {{each json.data.content as item}}
+        <li data-product-id="{{item.productId}}">
+            <div class="avatar"><img src="{{item.pictureUrl}}"/></div>
+            <div class="shop">
+                <h3>{{item.productName}}</h3>
+                <p>货号:{{item.productCode}}</p>
+                <p class="price">
+                    批发价:<span>{{item.referencePrice}}</span>
+                </p>
+            </div>
+        </li>
+        {{/each}}
+    {{/if}}
+</script>
+<script type="text/javascript" src="../js/pulgins.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title>最新版本</title>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <link type="text/css" rel="stylesheet" href="../style/new.css">
+    <script type="text/javascript" src="../js/pulgins.js"></script>
+    <script type="text/javascript" src="../js/new.js"></script>
+</head>
+<body>
+<section class="time-box">
+    <input type="date" placeholder="开始时间" name="start"/> - <input type="date" placeholder="结束时间" name="end" min=""/>
+    <a href="javascript:;" class="date-confirm J_date_confirm">确定</a>
+</section>
+<section class="tab">
+    <a href="javascript:;">最近7日</a>
+    <a href="javascript:;">最近15日</a>
+    <a href="javascript:;">最近一月</a>
+</section>
+
+<section class="commodity-list content">
+    <ul id="commodityList"></ul>
+</section>
+<div class="up J_up">
+    <i class="iconfont">&#xe615;</i>
+    <p>返回顶部</p>
+</div>
+<script type="text/html" id="commodityListTpl">
+    {{if json.data && json.data.content}}
+        {{each json.data.content as item}}
+        <li data-product-id="{{item.productId}}">
+            <div class="avatar"><img src="{{item.pictureUrl}}"/></div>
+            <div class="shop">
+                <h3>{{item.productName}}</h3>
+                <p>货号:{{item.productCode}}</p>
+                <p class="price">
+                    批发价:<span>{{item.referencePrice}}</span>
+                </p>
+            </div>
+        </li>
+        {{/each}}
+    {{/if}}
+</script>
+</body>
+</html>

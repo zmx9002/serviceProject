@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <title>订单详情</title>
+    <link type="text/css" rel="stylesheet" href="../style/orderDetails.css">
+    <script type="text/javascript" src="../js/pulgins.js"></script>
+    <script type="text/javascript" src="../js/orderDetails.js"></script>
+</head>
+<body>
+<section class="order-details" id="orderListCon">
+
+</section>
+
+<script type="text/html" id="orderListTpl">
+    <div class="address-con address J_address">
+        <div>收  件 人：<span>{{json.contactName}}</span></div>
+        <div>联系电话：<span class="blue">{{json.contactMobile}}</span></div>
+        <div>收货地址：<span>{{json.contactName}}{{json.fullAddress}}</span></div>
+    </div>
+    <div class="order-box">
+        <div class="order-num" data-order-id="{{json.orderId}}">
+            订单编号：{{json.orderNo}}
+        </div>
+        <div class="order-name">{{json.storeName}}</div>
+        {{each json.items as list}}
+        <div class="order-commodity clearfix">
+            <div class="commodity-pic f_left"><img src="{{list.pictureUrl}}"/></div>
+            <div class="commodity-inof f_left">
+                <h3>{{list.productName}}</h3>
+                <p>货号:{{list.productCode}}</p>
+            </div>
+            <div class="price-box f_right">
+                <h3><span>￥</span><span class="price">{{list.price}}</span>/件</h3>
+                <p>共<span>{{json.productTotalNum}}</span>件</p>
+                {{if json.delay}}
+                <span class="goods-state">{{json.delay}}</span>
+                {{else}}
+                <span class="goods-state">现货</span>
+                {{/if}}
+            </div>
+        </div>
+        {{each list.colorSizeInfo as colorList}}
+        <div class="commodity-size-box">
+            <div class="color">{{colorList.color}}</div>
+            {{each colorList.size as sizeList}}
+            <div class="size-info">尺码：{{sizeList.sizeName}} <span>{{sizeList.num}}</span></div>
+            {{/each}}
+        </div>
+        {{/each}}
+        {{/each}}
+        <div class="freight">运费：￥{{if json.freight}}{{json.freight}}{{else}}0.00{{/if}}</div>
+        <div class="order-total">
+            共{{json.productTotalNum}}件，总计：<span>&yen;{{json.totalPrice}}</span>
+        </div>
+        {{if json.logisticsWay == 1}}
+        <div class="pay-way">物流方式：{{json.logisticsCompany}} <span class="blue">{{json.logisticsNo}}</span></div>
+        {{/if}}
+        {{if json.payWay}}
+        <div class="pay-way">支付方式：{{json.payWay}}</div>
+        {{/if}}
+        {{if json.orderTime}}
+        <div class="order-time">下单时间：{{json.orderTime}}</div>
+        {{/if}}
+        {{if json.payTime}}
+        <div class="order-time">付款时间：{{json.payTime}}</div>
+        {{/if}}
+        {{if json.deliverTime}}
+        <div class="order-time">发货时间：{{json.deliverTime}}</div>
+        {{/if}}
+        {{if json.confirmTime}}
+        <div class="order-time">确认时间：{{json.confirmTime}}</div>
+        {{/if}}
+    </div>
+    {{if json.status == 1}}
+    <a href="javascript:;" class="pay-btn J_cancel_order">取消订单</a>
+    {{else if json.status == 2}}
+    <a href="javascript:;" class="pay-btn J_pay_order">付款</a>
+    {{else if json.status == 4}}
+    <a href="javascript:;" class="pay-btn J_confirm_order">确认收货</a>
+    {{/if}}
+</script>
+</body>
+</html>
+
+

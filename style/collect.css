@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+.collect-wrap li{
+    height: 1rem;
+    background: #fff;
+    padding: 0 .2rem;
+    line-height: 1rem;
+    margin-bottom: .02rem;
+    font-size: .28rem;
+    color: #222;
+    overflow: hidden;
+}
+.collect-wrap label{
+    display: block;
+    width: .4rem;
+    height: .4rem;
+    margin: .3rem;
+    float: left;
+    position: relative;
+}
+.collect-wrap label input{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 2;
+    display: block;
+    width: .4rem;
+    height: .4rem;
+    opacity: 0;
+}
+.collect-wrap label span{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 1;
+    display: block;
+    width: .4rem;
+    height: .4rem;
+    background: url("../images/checkbox.png") no-repeat -0.42rem;
+    background-size: .83rem .4rem;
+}
+.collect-wrap input[type="radio"]:checked+span{
+    background: url("../images/checkbox.png") no-repeat;
+    background-size: .83rem .4rem;
+}
+.add-btn{
+    display: block;
+    width: 6.54rem;
+    height: .84rem;
+    background: #ff7133;
+    margin: .5rem auto;
+    text-align: center;
+    color: #fff;
+    line-height: .84rem;
+    font-size: .28rem;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <link type="text/css" rel="stylesheet" href="../style/common.css">
+    <link type="text/css" rel="stylesheet" href="../style/message.css">
+</head>
+<body>
+<div class="message-wrap">
+    <ul id="messages"></ul>
+</div>
+<div class="message-btn">
+    <label>
+        <a href="javascript:;" class="iconfont pic-ico">&#xe62c;</a>
+        <input type="file" id="file_box" class="camera J_pic"/>
+    </label>
+    <!--<label>-->
+        <!--<a href="javascript:;" class="iconfont voice-ico J_voice">&#xe62a;</a>-->
+        <!--<a href="javascript:;" class="iconfont keyboard-ico J_keyboard">&#xe62b;</a>-->
+    <!--</label>-->
+    <!--<input type="button" value="按住 说话" class="voice-btn J_voice_transcribe"/>-->
+    <div id="text" class="message-text" contenteditable="true" style="-webkit-user-select: auto"></div>
+    <a href="javascript:;" class="iconfont send-ico J_send">&#xe629;</a>
+</div>
+<script type="text/javascript" src="../js/size.js"></script>
+<script type="text/javascript" src="../plugins/jquery-2.2.4.js"></script>
+<script type="text/javascript" src="../plugins/zepto.js"></script>
+<script type="text/javascript" src="../plugins/layer_mobile/layer.js"></script>
+<script type="text/javascript" src="../plugins/jmessage-sdk-web.2.4.1.min.js"></script>
+<script type="text/javascript" src="../plugins/jquery.md5.js"></script>
+<script type="text/javascript" src="../js/message.js"></script>
+</body>
+</html>

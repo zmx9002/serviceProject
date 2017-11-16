@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <title>收货地址</title>
+    <link type="text/css" rel="stylesheet" href="../style/orderAddress.css">
+</head>
+<body>
+<section class="wrap">
+    <div class="list">
+        <label>收件人</label>
+        <input type="text" placeholder="填写姓名" value="" name="name"/>
+    </div>
+    <div class="list">
+        <label>联系电话</label>
+        <input type="number" placeholder="填写联系电话" value="" name="mobile" maxlength="11"/>
+    </div>
+    <div class="list">
+        <label>收货地址</label>
+        <span id="sel_city" data-area-id="" data-city-id="" data-province-id="" class="address-area">填写地址</span>
+    </div>
+    <div class="address">
+        <textarea placeholder="填写详细地址" class="address-con"></textarea>
+    </div>
+    <div class="defult">
+        <label>设为默认地址</label>
+        <div class="btn on J_defult">
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+    <a href="javascript:;" class="save J_save">保存</a>
+</section>
+
+<script type="text/javascript" src="../js/pulgins.js"></script>
+<script type="text/javascript" src="../js/city.js"></script>
+<script type="text/javascript" src="../js/picker.min.js"></script>
+<script type="text/javascript" src="../js/orderAddress.js"></script>
+</body>
+</html>

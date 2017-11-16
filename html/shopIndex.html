@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <title>店铺</title>
+    <link type="text/css" rel="stylesheet" href="../style/shopIndex.css">
+</head>
+<body>
+<section class="avatar-box">
+    <input type="hidden" name="userId" value=""/>
+    <div class="avatar"><img src=""/></div>
+    <div class="name"></div>
+    <div class="shop-vermicelli">粉丝：<span></span></div>
+    <a href="javascript:;" class="follow J_follow" data-follow-id=""></a>
+</section>
+<section class="content">
+    <div>
+        <ul class="shop-list-box" id="commodityList"></ul>
+    </div>
+</section>
+
+<div class="shade"></div>
+<a href="javascript:;" class="type-btn J_type">分类</a>
+<ul id="typeBox" class="type-box-ul">
+    <li><a href="javascript:;" class="red J_orders"><img src="../images/type1.png"/>我下过的单</a></li>
+    <li><a href="javascript:;" class="orange J_ranking"><img src="../images/type2.png"/>本店销量排行榜</a></li>
+    <li><a href="javascript:;" class="blue J_news"><img src="../images/type3.png"/>最近新版</a></li>
+</ul>
+<footer class="shop-footer">
+    <a href="javascript:;" class="J_contact">联系商家</a>
+    <a href="javascript:;" class="J_store_intro">店铺介绍</a>
+    <a href="../html/orderList.html">进货单</a>
+</footer>
+<div class="up J_up">
+    <i class="iconfont">&#xe615;</i>
+    <p>返回顶部</p>
+</div>
+<!--分类信息-->
+<script type="text/html" id="typeList">
+    {{if json.data }}
+    {{each json.data as item}}
+    <li><a href="../html/commodityList.html?storeId={{item.storeId}}&keyWord={{item.categoryName}}">{{item.categoryName}}</a></li>
+    {{/each}}
+    {{/if}}
+</script>
+
+<script type="text/html" id="commodityListTpl">
+    {{if json.data && json.data.content}}
+        {{each json.data.content as item}}
+        <li data-product-id="{{item.productId}}">
+            <div class="avatar"><img src="{{item.pictureUrl}}"/></div>
+            <div class="shop">
+                <h3>{{item.productName}}</h3>
+                <p>货号:{{item.productCode}}</p>
+                <p class="price">
+                    批发价:<span>{{item.referencePrice}}</span>
+                </p>
+            </div>
+        </li>
+        {{/each}}
+    {{/if}}
+</script>
+<script type="text/javascript" src="../js/pulgins.js"></script>
+<script type="text/javascript" src="../js/shopIndex.js"></script>
+</body>
+</html>

@@ -1,0 +1,423 @@
+@charset "utf-8";
+.banner-box,.banner{
+    width: 100%;
+    height: 7.54rem;
+    overflow: hidden;
+    position: relative;
+}
+.pic-list{
+    display: block;
+    height: 7.54rem;
+    overflow: hidden;
+}
+.pic-list li{
+    display: block;
+    float: left;
+    width: 7.5rem;
+    height: 7.54rem;
+}
+.pic-list li img{
+    display: block;
+    width: 100%;
+    height: 7.54rem;
+}
+.pic-mask{
+    position: absolute;
+    bottom:.25rem;
+    left: .4rem;
+    width: 1.2rem;
+    height: .5rem;
+    background: #fff;
+    text-align: center;
+    opacity: .5;
+    line-height: .5rem;
+    font-size: .24rem;
+    color: #222;
+}
+.pic-mask span{
+    color: #ff7133;
+}
+.collect{
+    position: absolute;
+    bottom:.24rem;
+    right: .36rem;
+    display: block;
+    width: 1.2rem;
+    height: .5rem;
+    background: #fff;
+    text-align: center;
+    line-height: .5rem;
+    font-size: .24rem;
+    color: #ff7133;
+}
+.shop-info,.wholesale-box,.shop-size,.shop-containe{
+    margin-bottom: .02rem;
+    background: #fff;
+    padding: .1rem .2rem;
+    overflow: hidden;
+}
+section.banner-box{
+    padding: 0;
+}
+.shop-info{
+    padding-top: .2rem;
+}
+.shop-info .name{
+    display:-webkit-box;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    word-break:break-all;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    width: 100%;
+    max-height: .8rem;
+    line-height: .4rem;
+    font-size: .28rem;
+    color: #222;
+}
+.shop-info .price{
+    color: #666;
+    font-size: .24rem;
+    line-height: .65rem;
+}
+.shop-info .price span{
+    color: #fb4276;
+    font-size: .36rem;
+    margin-right: .1rem;
+}
+.shop-info .wholesale{
+    line-height: .54rem;
+    font-size: .24rem;
+    color: #666;
+}
+.wholesale-box{
+    overflow: hidden;
+    margin: 0;
+    margin-bottom: .01rem;
+    background: none;
+    padding: 0;
+}
+.wholesale-box a{
+    display: block;
+    width: 3.74rem;
+    height: .98rem;
+    background: #fff;
+    float: left;
+    text-align: center;
+    margin-bottom: .01rem;
+    margin-right: .01rem;
+}
+.wholesale-box a p{
+    padding-top: .18rem;
+    line-height: .4rem;
+    color: #fb4276;
+    font-size: .32rem;
+}
+.wholesale-box a i{
+    color: #666;
+    font-size: .24rem;
+    line-height: .24rem;
+}
+.shop-size{
+    font-size: .28rem;
+    color: #666;
+    padding-top: .1rem;
+}
+.shop-size i{
+    display: inline-block;
+    width: .85rem;
+    vertical-align: top;
+    margin-top: .1rem;
+}
+.size-color{
+    display: inline-block;
+    width: 5.95rem;
+    line-height: .6rem;
+    color: #222;
+    font-size: .28rem;
+}
+.shop-container{
+    padding: .2rem;
+    font-size: .28rem;
+    color: #666;
+    line-height: .54rem;
+    padding-bottom: 1rem;
+    background: #fff;
+}
+
+.shop-container span{
+    color: #222;
+}
+.shop-container img{
+    width: 100%;
+}
+.commodity-box{
+    display: block;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 1rem;
+    overflow: hidden;
+}
+.commodity-box a{
+    display: block;
+    width: 25%;
+    height: 1rem;
+    text-align: center;
+    float: left;
+    line-height: 1rem;
+    color: #fff;
+    font-size: .28rem;
+}
+.commodity-box a:nth-of-type(1){
+    background: #0fda93;
+}
+.commodity-box a:nth-of-type(2){
+    background: #fb4276;
+}
+.commodity-box a:nth-of-type(3){
+    background: #00aafb;
+}
+.commodity-box a:nth-of-type(4){
+    background: #ff7133;
+}
+
+/*下单弹窗*/
+.pop{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top:0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 100;
+}
+.pop-con{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height:0;
+    background: #fff;
+    opacity: 0;
+    transition: all .3s linear;
+    z-index: 110;
+}
+.stock-order{
+    padding: .2rem;
+
+}
+.stock-order .shop{
+    width: 100%;
+    height: 1.44rem;
+    overflow: hidden;
+    border-bottom: 1px solid #dee2ee;
+    padding-bottom: .24rem;
+    position: relative;
+}
+.stock-order .close{
+    position: absolute;
+    top:0;
+    right:0;
+    width: .4rem;
+    height: .4rem;
+    text-align: center;
+    line-height: .4rem;
+    font-size: .38rem;
+}
+.stock-order .shop-avatar{
+    width: 1.2rem;
+    height: 1.2rem;
+    float: left;
+    background: #eee;
+}
+.stock-order .shop-avatar img{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.stock-order .shop-name{
+    float: left;
+    width: 5rem;
+    margin-left: .3rem;
+}
+.stock-order .shop-name h3{
+    display: block;
+    width: 100%;
+    height: .52rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    line-height: .52rem;
+    font-size: .28rem;
+    font-weight: normal;
+}
+.stock-order .shop-name p{
+    line-height: .56rem;
+    font-size: .24rem;
+    color: #666;
+    padding-top: .2rem;
+}
+.shop-name p{
+    line-height: .3rem;
+    color: #333;
+}
+.shop-name .size-price{
+    color: #fb4276;
+}
+.pop-srcoll{
+    height: 7rem;
+    overflow: auto;
+}
+.stock-order .color,.stock-order .size{
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: .2rem;
+    border-bottom: 1px solid #dee2ee;
+}
+.stock-order .color h3,.stock-order .size h3{
+    font-size: .28rem;
+    color: #666;
+    font-weight: normal;
+    line-height: .72rem;
+}
+.stock-order .size ul{
+    display: none;
+}
+.stock-order .size ul.active{
+    display: block;
+}
+.stock-order .color li{
+    display: inline-block;
+    height: .6rem;
+    line-height: .6rem;
+    padding: 0 .4rem;
+    border: 1px solid #dee2ee;
+    margin:0 .2rem .2rem 0;
+    font-size: .28rem;
+    color: #222;
+    position: relative;
+}
+.stock-order .add-color{
+    display: inline-block;
+    height: .6rem;
+    line-height: .6rem;
+    padding: 0 .4rem;
+    border: 1px solid #dee2ee;
+    font-size: .28rem;
+    color: #222;
+    position: relative;
+    margin:0 .2rem .2rem 0;
+}
+.stock-order .color li .tips{
+    position: absolute;
+    top:-0.15rem;
+    right:-0.2rem;
+    z-index: 90;
+    height: .3rem;
+    line-height: .3rem;
+    padding: 0 .1rem;
+    background: #fb4276;
+    border-radius: .15rem;
+    color: #fff;
+    font-size: .2rem;
+}
+.stock-order li.active{
+    background: #ff7133;
+    border: 1px solid #ff7133;
+    color:#fff;
+}
+.stock-order .size li{
+    height: 1.1rem;
+    overflow: hidden;
+    background: #f5f8fd;
+    margin-bottom: .15rem;
+    padding: .2rem;
+}
+
+.stock-order .add-size{
+    display: block;
+    width: 7rem;
+    height: .65rem;
+    overflow: hidden;
+    background: #fff;
+    line-height: .65rem;
+    font-size: .28rem;
+    text-align: center;
+    border: 1px solid #dee2ee;
+    margin: .2rem auto;
+}
+.stock-order li .size-left{
+    width: 4rem;
+    line-height: .7rem;
+    float: left;
+}
+.stock-order li .size-right{
+    width: 2.6rem;
+    float: left;
+}
+
+.stock-order .size .size-tip{
+    line-height: .35rem;
+    font-size: .28rem;
+    color: #222;
+}
+
+.stock-order .size .size-add,.stock-order .size .size-sub{
+    display: block;
+    float: left;
+    width:.48rem;
+    height: .48rem;
+    text-align: center;
+    line-height: .48rem;
+    background: #eee;
+    margin-top: .1rem;
+    color: #999;
+    font-size: .28rem;
+}
+.stock-order .size .size-num{
+    display: block;
+    float: left;
+    width:1.24rem;
+    height: .48rem;
+    line-height: .48rem;
+    background: #fff;
+    margin: .1rem .05rem;
+    text-align: center;
+    color: #222;
+}
+.stock-order .total{
+    height: .54rem;
+    line-height: .54rem;
+    text-align: right;
+    padding-right: .4rem;
+    font-size: .24rem;
+    color: #666;
+}
+.stock-order .total span{
+    color: #fb4276;
+}
+.pop-btn{
+    height: 1rem;
+    overflow: hidden;
+}
+.pop-btn a{
+    display: block;
+    width: 100%;
+    height: 1rem;
+    float: left;
+    text-align: center;
+    line-height: 1rem;
+    font-size: .28rem;
+    color: #fff;
+    background: #ff7133;
+}
+.add-color-text,.add-size-text{
+    width: 5rem;
+    height: .7rem;
+    padding: 0 .2rem;
+    line-height: .7rem;
+    border: 1px solid #eee;
+    background: #fff;
+
+}

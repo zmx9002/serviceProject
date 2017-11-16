@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <title>进货单</title>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <link type="text/css" rel="stylesheet" href="../style/orderList.css">
+</head>
+<body>
+<section class="content">
+    <ul class="commodity-list-box" id="commodityList"></ul>
+</section>
+<footer class="main-footer">
+    <a href="../html/index.html">
+        <i class="iconfont hover">&#xe614;</i>
+        <p>首页</p>
+    </a>
+    <a href="../html/orderList.html" class="active">
+        <i class="iconfont">&#xe60b;</i>
+        <p>进货单</p>
+    </a>
+    <a href="../html/messageList.html">
+        <i class="iconfont">&#xe60f;</i>
+        <p>消息</p>
+    </a>
+    <a href="../html/mine.html">
+        <i class="iconfont">&#xe612;</i>
+        <p>我的</p>
+    </a>
+</footer>
+<div class="up J_up"><i class="iconfont">&#xe615;</i></div>
+
+<script type="text/html" id="commodityListTpl">
+    {{if json.data }}
+        {{each json.data as item}}
+        <li data-store-id="{{item.storeId}}">
+            <div class="avatar"><img src="{{item.storeLogo}}"/></div>
+            <div class="shop">{{item.storeName}}</div>
+        </li>
+        {{/each}}
+    {{/if}}
+</script>
+<script type="text/javascript" src="../js/pulgins.js"></script>
+<script type="text/javascript" src="../js/orderList.js"></script>
+</body>
+</html>

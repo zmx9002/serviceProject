@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-mw="750">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
+    <title>搜索</title>
+    <link type="text/css" rel="stylesheet" href="../style/index.css">
+</head>
+<body>
+<section class="search">
+    <input type="text" placeholder="搜索店铺、商品" class="J_search"/>
+    <a href="javascript:;" class="search-confirm J_search_result_btn">搜索</a>
+</section>
+<section class="tab">
+    <a href="javascript:;" data-tab="1">店铺</a>
+    <a href="javascript:;" data-tab="2" class="J_commodity">商品</a>
+</section>
+<section class="content">
+    <div class="shop-list tab-con">
+        <ul id="shopList"></ul>
+    </div>
+</section>
+<div class="up J_up">
+    <i class="iconfont">&#xe615;</i>
+    <p>返回顶部</p>
+</div>
+<script type="text/html" id="shopListTpl">
+    {{if json.data && json.data.content}}
+        {{each json.data.content as item}}
+        <li data-store-id="{{item.storeId}}">
+            <img src="{{item.logo}}"/>
+            <p>{{item.storeName}}</p>
+        </li>
+        {{/each}}
+    {{/if}}
+</script>
+<script type="text/html" id="commodityListTpl">
+    {{if json.data && json.data.content}}
+        {{each json.data.content as item}}
+        <li data-id="{{item.productId}}">
+            <div class="avatar"><img src="{{item.logo}}"/></div>
+            <div class="shop">
+                <h3>{{item.productName}}</h3>
+                <p>货号:{{item.productCode}}</p>
+                <p class="price">
+                    批发价:<span>{{item.referencePrice}}</span>
+                </p>
+            </div>
+        </li>
+        {{/each}}
+    {{/if}}
+</script>
+<script type="text/javascript" src="../js/pulgins.js"></script>
+<script type="text/javascript" src="../js/category.js"></script>
+</body>
+</html>

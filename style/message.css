@@ -1,0 +1,286 @@
+@charset "utf-8";
+.message-wrap{
+    width: 100%;
+    padding: .5rem .2rem 0 .2rem;
+}
+.send-info{
+    width: 7rem;
+    height: 1.6rem;
+    background: #fff;
+    margin-bottom: .2rem;
+    padding: .2rem;
+    overflow: hidden;
+}
+.send-info img{
+    display: block;
+    width: 1.18rem;
+    height: 1.18rem;
+    float: left;
+    margin-right: .22rem;
+}
+.send-info .infor{
+    width: 3.5rem;
+    height: 1.18rem;
+    float: left;
+}
+.send-info .infor h3{
+    font-size: .24rem;
+    line-height: .34rem;
+    color: #222;
+    font-weight: normal;
+}
+.send-info .infor h4{
+    color: #666;
+    font-size: .24rem;
+    line-height: .3rem;
+    font-weight: normal;
+}
+.send-info .infor p{
+    font-size: .24rem;
+    line-height: .3rem;
+    padding-top: .24rem;
+    color: #fb4276;
+}
+.send-info .send-btn{
+    display: block;
+    width: 1.5rem;
+    height: .7rem;
+    line-height: .7rem;
+    text-align: center;
+    background: #ff7133;
+    color: #fff;
+    font-size: .24rem;
+    float: left;
+    margin-top: .25rem;
+}
+.message-wrap{
+    padding-bottom: 1rem;
+}
+.message-wrap ul{
+    display: block;
+    width:100%;
+    overflow: hidden;
+}
+.message-wrap li{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: .2rem;
+    text-align: center;
+}
+.content-box{
+    margin-top: .2rem;
+}
+.time{
+    display: inline;
+    padding: 0 .1rem;
+    background: #ddd;
+    color: #fff;
+    line-height: .36rem;
+    font-size: .24rem;
+    border-radius: .05rem;
+}
+.message-wrap li.left{
+    float: left;
+}
+.message-wrap li.left .avatar{
+    float: left;
+    width: .8rem;
+    height: .8rem;
+    background: #eee;
+    margin-right: .2rem;
+    overflow: hidden;
+}
+
+.message-wrap li.left .avatar img{
+    width: .8rem;
+    height: .8rem;
+}
+.message-wrap li.left .content{
+    float: left;
+    padding: .15rem;
+    background: #fff;
+    position: relative;
+    max-width: 6rem;
+    text-align: right;
+}
+.message-wrap li.left i{
+    position: absolute;
+    top:-0.02rem;
+    left: -0.2rem;
+    display: block;
+    width: .4rem;
+    height: .4rem;
+    font-size: .4rem;
+    color: #fff;
+    transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+}
+
+.message-wrap li.right{
+    float: right;
+    width: 100%;
+    overflow: hidden;
+}
+.message-wrap li.right .avatar{
+    float: right;
+    width: .8rem;
+    height: .8rem;
+    background: #eee;
+    margin-left: .2rem;
+    overflow: hidden;
+}
+.message-wrap li.right .avatar img{
+    width: .8rem;
+    height: .8rem;
+}
+.message-wrap li.right .content{
+    float: right;
+    padding: .15rem;
+    background: #a0e75a;
+    position: relative;
+    max-width: 6rem;
+}
+.message-wrap li.right i{
+    position: absolute;
+    top:-0.02rem;
+    right: -0.2rem;
+    display: block;
+    width: .4rem;
+    height: .4rem;
+    font-size: .4rem;
+    color: #a0e75a;
+}
+.message-btn{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1rem;
+    background: #fff;
+    padding: .2rem;
+    border-top: 1px solid #cecece;
+    z-index: 99;
+}
+.message-text{
+    display: block;
+    float: left;
+    border: 1px solid #cecece;
+    border-radius: .04rem;
+    width: 5.5rem;
+    line-height: .4rem;
+    height: auto;
+    max-height: 1.8rem;
+    min-height: .6rem;
+    overflow: auto;
+    padding: .1rem .2rem;
+    outline: none;
+}
+.voice-btn{
+    display: none;
+    float: left;
+    border: 1px solid #cecece;
+    background: #eee;
+    border-radius: .04rem;
+    width: 4.8rem;
+    line-height: .4rem;
+    height: auto;
+    max-height: 1.8rem;
+    min-height: .6rem;
+    overflow: auto;
+    padding: .1rem .2rem;
+    outline: none;
+}
+.message-btn a{
+    display: block;
+    width: .6rem;
+    height: .6rem;
+    float: left;
+    font-size: .6rem;
+    margin-right: .15rem;
+    vertical-align: bottom;
+}
+.message-btn a:last-child{
+    font-size: .6rem;
+    margin-right: 0;
+}
+.message-btn .pic-ico{
+    color: #0fda93;
+}
+.message-btn .voice-ico{
+    color: #00aafb;
+}
+.message-btn .keyboard-ico{
+    display: none;
+    color: #00aafb;
+}
+.message-btn .send-ico{
+    color: #ff7133;
+    margin-left: .2rem;
+}
+.content p img{
+    max-width: 4rem;
+}
+.message-wrap li.right .voice-box{
+    float: right;
+    padding: .05rem;
+    width: 3rem;
+    height: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+.message-wrap li.left .voice-box{
+    float: left;
+    padding: .05rem;
+    width: 3rem;
+    height: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+.message-wrap li.right .voice-box a.voice{
+    display: block;
+    float: right;
+    width: 3rem;
+    height: .7rem;
+    background: url("../images/voice1.png") no-repeat right center;
+    background-size: 3rem .7rem;
+    text-align: left;
+    padding: 0 .2rem;
+    line-height: .7rem;
+    font-size: .24rem;
+    color: #999;
+}
+.message-wrap li.left .voice-box a.voice{
+    display: block;
+    background: url("../images/voice2.png") no-repeat left center;
+    background-size: 3rem .7rem;
+    width: 3rem;
+    height: .7rem;
+    text-align: right;
+    padding: 0 .2rem;
+    line-height: .7rem;
+    font-size: .24rem;
+    color: #999;
+}
+.message-btn label{
+    display: block;
+    width: .6rem;
+    height: .6rem;
+    float: left;
+    font-size: .6rem;
+    margin-right: .15rem;
+    vertical-align: bottom;
+    position: relative;
+}
+.camera{
+    display: block;
+    width: .6rem;
+    height: .6rem;
+    float: left;
+    font-size: 0;
+    margin-right: .15rem;
+    vertical-align: bottom;
+    opacity: 0;
+    position: absolute;
+    top:0;
+    left: 0;
+}
