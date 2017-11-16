@@ -1,5 +1,9 @@
 $(function(){
     localStorage.setItem('version','1.0');
+    sessionStorage.setItem('token','22dfaa063f9c4311913b50e7964ea472');
+    sessionStorage.setItem('userId','9cfabb583d2b4a3d9f6a60394843bc50');
+    sessionStorage.setItem('userName','✨梦雪✨');
+    sessionStorage.setItem('avatarUrl','http://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoyGGkQk7yE6ABepPp8XCibQLNRve89ficSUtscpBQWsunon3ZbhmTibvAywIb4sZCY45eHshXDQJmMg/0');
     //解决延迟300sBug
     FastClick.attach(document.body);
     var menu = true;
@@ -35,7 +39,8 @@ $(function(){
             $('.shade').hide();
         }
         menu = !menu;
-    })
-})
+    });
+});
+
 
 
