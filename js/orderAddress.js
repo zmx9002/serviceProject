@@ -2,13 +2,86 @@
  * Created by mengxue on 17/10/25.
  */
 $(function () {
-    function getUrlParam(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-        if (r != null) return unescape(r[2]);
-        return null; //返回参数值
-    }
-
+    var doc = $(document);
+    seajs.use(['common','layer'],function(common,layer){
+        //保存
+        doc.on('click', '.J_save', function () {
+            var isDefault = 1;
+            if ($('.J_defult').hasClass('off')) {
+                isDefault = 0
+            }
+            if ($('input[name="mobile"]').val() == '') {
+                //提示
+                layer.open({
+                    content: '请填写联系电话'
+                    , skin: 'msg'
+                    , time: 2 //2秒后自动关闭
+                });
+            } else if ($('input[name="name"]').val() == '') {
+                //提示
+                layer.open({
+                    content: '请填写姓名'
+                    , skin: 'msg'
+                    , time: 2 //2秒后自动关闭
+                });
+            } else if ($('.address-area').text() == '') {
+                //提示
+                layer.open({
+                    content: '请选择收货地址'
+                    , skin: 'msg'
+                    , time: 2 //2秒后自动关闭
+                });
+            } else if ($('.address-con').val() == '') {
+                //提示
+                layer.open({
+                    content: '请填写详细地址'
+                    , skin: 'msg'
+                    , time: 2 //2秒后自动关闭
+                });
+            } else {
+                var data = {
+                    params: {
+                        contactMobile: $('input[name="mobile"]').val(),
+                        contactName: $('input[name="name"]').val(),
+                        address: $('.address-area').text(),
+                        fullAddress: $('.address-con').val(),
+                        isDefault: isDefault
+                    }
+                };
+                if (!addressId) {
+                    data.method = 'create.receiving.address';
+                    common.ordersAjax(data,function(result){
+                        if(result.code == 0){
+                            window.location.href = 'addressList.html'
+                        }
+                    })
+                } else {
+                    data.method = 'modify.receiving.address';
+                    data.params.addressId = addressId;
+                    common.ordersAjax(data,function(result){
+                        if(result.code == 0){
+                            window.location.href = 'addressList.html'
+                        }
+                    })
+                }
+            }
+        });
+        var addressId = common.getQueryString('addressId');
+        //编辑地址
+        if (addressId) {
+            var session = sessionStorage.getItem('addressInfo');
+            var str = JSON.parse(session);
+            $('input[name="name"]').val(str.name);
+            $('input[name="mobile"]').val(str.mobile);
+            $('.address-area').text(str.address);
+            $('.address-con').val(str.fullAddress);
+            if (str.isDefault) {
+                $('.J_defult').addClass('on').removeClass('off')
+            } else {
+                $('.J_defult').addClass('off').removeClass('on')
+            }
+        }
+    });
     selectAddress();
     function selectAddress() {
         var nameEl = document.getElementById('sel_city');
@@ -125,99 +198,11 @@ $(function () {
     }
 
     //是否默认
-    $(document).on('click', '.J_defult', function () {
+    doc.on('click', '.J_defult', function () {
         if ($(this).hasClass('on')) {
             $(this).removeClass('on').addClass('off')
         } else {
             $(this).removeClass('off').addClass('on')
         }
     });
-    //保存
-    $(document).on('click', '.J_save', function () {
-        var isDefault = 1;
-        if ($('.J_defult').hasClass('off')) {
-            isDefault = 0
-        };
-        if ($('input[name="mobile"]').val() == '') {
-            //提示
-            layer.open({
-                content: '请填写联系电话'
-                , skin: 'msg'
-                , time: 2 //2秒后自动关闭
-            });
-        } else if ($('input[name="name"]').val() == '') {
-            //提示
-            layer.open({
-                content: '请填写姓名'
-                , skin: 'msg'
-                , time: 2 //2秒后自动关闭
-            });
-        } else if ($('.address-area').text() == '') {
-            //提示
-            layer.open({
-                content: '请选择收货地址'
-                , skin: 'msg'
-                , time: 2 //2秒后自动关闭
-            });
-        } else if ($('.address-con').val() == '') {
-            //提示
-            layer.open({
-                content: '请填写详细地址'
-                , skin: 'msg'
-                , time: 2 //2秒后自动关闭
-            });
-        } else {
-            var data = {
-                params: {
-                    contactMobile: $('input[name="mobile"]').val(),
-                    contactName: $('input[name="name"]').val(),
-                    address: $('.address-area').text(),
-                    fullAddress: $('.address-con').val(),
-                    isDefault: isDefault,
-                    token: sessionStorage.getItem('token'),
-                },
-                version: localStorage.getItem('version')
-            };
-            if (!addressId) {
-                data.method = 'create.receiving.address';
-                $.ajax({
-                    type: 'post',
-                    url: 'http://106.15.205.55/order',
-                    data: JSON.stringify(data)
-                }).done(function (result) {
-                    if(result.code == 0){
-                        window.location.href = 'addressList.html'
-                    }
-                });
-            } else {
-                data.method = 'modify.receiving.address';
-                data.params.addressId = addressId;
-                $.ajax({
-                    type: 'post',
-                    url: 'http://106.15.205.55/order',
-                    data: JSON.stringify(data)
-                }).done(function (result) {
-                    if(result.code == 0){
-                        window.location.href = 'addressList.html'
-                    }
-                });
-            }
-        }
-    });
-
-    var addressId = getUrlParam('addressId');
-    //编辑地址
-    if (addressId) {
-        var session = sessionStorage.getItem('addressInfo');
-        var str = JSON.parse(session);
-        $('input[name="name"]').val(str.name);
-        $('input[name="mobile"]').val(str.mobile);
-        $('.address-area').text(str.address);
-        $('.address-con').val(str.fullAddress);
-        if (str.isDefault) {
-            $('.J_defult').addClass('on').removeClass('off')
-        } else {
-            $('.J_defult').addClass('off').removeClass('on')
-        }
-    }
 });

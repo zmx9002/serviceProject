@@ -5,6 +5,7 @@
     <title>商品详情</title>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
     <link type="text/css" rel="stylesheet" href="../style/common.css">
+    <link rel="stylesheet" type="text/css" href="../plugins/layer_mobile/need/layer.css">
     <link type="text/css" rel="stylesheet" href="../style/commodity.css">
 </head>
 <body>
@@ -125,36 +126,48 @@
         <div class="size">
             <h3>尺码</h3>
             {{if json.data.color != null && json.data.color != ''}}
-            {{each toColor(json.data.color) as colorItem}}
-            {{if json.data.size != null && json.data.size != ''}}
-                {{each json.data.size}}
-                <ul class="size-list">
-                    {{each toSize(json.data.size) as sizeItem}}
-                    <li>
-                        <div class="size-left">{{sizeItem}}</div>
-                        <div class="size-right">
-                            <a href="javascript:;" class="size-sub J_sub">-</a>
-                            <input type="number" value="" name="number" placeholder="0" class="size-num"/>
-                            <a href="javascript:;" class="size-add J_add">+</a>
-                        </div>
-                    </li>
+                {{each toColor(json.data.color) as colorItem}}
+                {{if json.data.size != null && json.data.size != ''}}
+                    {{each json.data.size}}
+                    <ul class="size-list">
+                        {{each toSize(json.data.size) as sizeItem}}
+                        <li>
+                            <div class="size-left">{{sizeItem}}</div>
+                            <div class="size-right">
+                                <a href="javascript:;" class="size-sub J_sub">-</a>
+                                <input type="number" value="" name="number" placeholder="0" class="size-num"/>
+                                <a href="javascript:;" class="size-add J_add">+</a>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
                     {{/each}}
-                </ul>
+                {{else}}
+                    <ul class="size-list active">
+                        <li>
+                            <div class="size-left">均码</div>
+                            <div class="size-right">
+                                <a href="javascript:;" class="size-sub J_sub">-</a>
+                                <input type="number" value="" name="number" placeholder="0" class="size-num"/>
+                                <a href="javascript:;" class="size-add J_add">+</a>
+                            </div>
+                        </li>
+                        <a href="javascript:;" class="add-size J_add_size"> + 添加自定义尺码</a>
+                    </ul>
+                {{/if}}
                 {{/each}}
             {{else}}
-                <ul class="size-list active">
-                    <li>
-                        <div class="size-left">均码</div>
-                        <div class="size-right">
-                            <a href="javascript:;" class="size-sub J_sub">-</a>
-                            <input type="number" value="" name="number" placeholder="0" class="size-num"/>
-                            <a href="javascript:;" class="size-add J_add">+</a>
-                        </div>
-                    </li>
-                    <a href="javascript:;" class="add-size J_add_size"> + 添加自定义尺码</a>
-                </ul>
-            {{/if}}
-            {{/each}}
+            <ul class="size-list active">
+                <li>
+                    <div class="size-left">均码</div>
+                    <div class="size-right">
+                        <a href="javascript:;" class="size-sub J_sub">-</a>
+                        <input type="number" value="" name="number" placeholder="0" class="size-num"/>
+                        <a href="javascript:;" class="size-add J_add">+</a>
+                    </div>
+                </li>
+                <a href="javascript:;" class="add-size J_add_size"> + 添加自定义尺码</a>
+            </ul>
             {{/if}}
         </div>
         <div class="total">
@@ -166,9 +179,9 @@
 <script type="text/javascript" src="../plugins/zepto.js"></script>
 <script type="text/javascript" src="../js/size.js"></script>
 <script type="text/javascript" src="../plugins/fastclick.min.js"></script>
-<script type="text/javascript" src="../plugins/teamlate.js"></script>
-<script type="text/javascript" src="../plugins/layer_mobile/layer.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../plugins/sea.js"></script>
+<script type="text/javascript" charset="utf-8" src="../plugins/path.config.js"></script>
 <script type="text/javascript" src="../js/commodity.js"></script>
 </body>
 </html>

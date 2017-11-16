@@ -3,32 +3,94 @@
  */
 $(function(){
     var doc = $(document);
-    function getUrlParam(name){
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-        if (r!=null) return unescape(r[2]); return null; //返回参数值
-    }
-    getOrderDetails();
-    function getOrderDetails(){
-        var data={
-            method:'get.my.stock.order',
-            params:{
-                storeId:getUrlParam('storeId'),
-                token:sessionStorage.getItem('token')
-            },
-            version:localStorage.getItem('version')
+    seajs.use(['common','template','layer'],function(common,template,layer){
+        getOrderDetails();
+        function getOrderDetails(){
+            var data={
+                method:'get.my.stock.order',
+                params:{
+                    storeId:common.getQueryString('storeId'),
+                },
+            };
+            common.ordersAjax(data,function(result){
+                var html = template('orderListTpl',{json:result});
+                $('#orderListCon').html(html)
+            })
         };
-        $.ajax({
-            type:'post',
-            url:'http://106.15.205.55/order',
-            data:JSON.stringify(data)
-        }).done(function(result){
-            var html = template('orderListTpl',{json:result});
-            $('#orderListCon').html(html)
+
+        //删除按钮
+        doc.on('click','.J_delete',function(){
+            var orderBox = $(this).parents('.order-box');
+            var data = {
+                method:'delete.stock.order.product',
+                params:{
+                    itemId:$(this).parents('.list-box').data('itemId')
+                }
+            };
+            common.ordersAjax(data,function(result){
+                if(result.code == 0){
+                    orderBox.remove();
+                    total();
+                }
+            });
         });
-    }
 
-
+        //下单按钮
+        doc.on('click','.J_overbooking',function(){
+            var totalNum = $('.total-num').text();
+            var stockOrderIds = [];
+            if(totalNum > 0){
+                var products = [];
+                for(var i=0; i<$('.J_all_commodity:checked').length;i++){
+                    var commodityIndex = $('.J_all_commodity:checked').eq(i).parents('.order-box');
+                    var productId = commodityIndex.data('productId');
+                    var itemId = commodityIndex.data('itemId');
+                    var colorSizeInfo = [];
+                    stockOrderIds.push(itemId);
+                    for(var j=0; j< commodityIndex.find('.color-list').length; j++){
+                        var colorIndex = commodityIndex.find('.color-list').eq(j);
+                        if(colorIndex.find('.J_all_color').is(':checked')){
+                            var colorName = colorIndex.find('.color-name').text();
+                            for(var k=0; k < colorIndex.find('.J_single:checked').length; k++){
+                                var sizeIndex = colorIndex.find('.J_single:checked').eq(k);
+                                var sizeName = sizeIndex.parents('.size-list').find('.size-name').text();
+                                var sizeNum = Number(sizeIndex.parents('.size-list').find('.number').val());
+                                var price =  Number(sizeIndex.parents('.size-list').find('.number').val());
+                                colorSizeInfo.push({
+                                    colorName:colorName,
+                                    sizeName:sizeName,
+                                    num:sizeNum,
+                                    price:price
+                                });
+                            }
+                        }
+                    }
+                    products.push({
+                        colorSizeInfo:colorSizeInfo,
+                        productId:productId
+                    });
+                }
+                var data = {
+                    method:'create.order',
+                    params:{
+                        products:products,
+                        stockOrderIds:stockOrderIds,
+                        token:sessionStorage.getItem('token')
+                    },
+                    version:localStorage.getItem('version')
+                };
+                sessionStorage.setItem('immediately',JSON.stringify(data));
+                window.location.href = 'addressListOrder.html?immediately';
+            }else{
+                //提示
+                layer.open({
+                    content: '请先选择商品'
+                    ,skin: 'msg'
+                    ,time: 2 //2秒后自动关闭
+                });
+            }
+        });
+    });
     //全选本商品所有尺码
     $(document).on('click','.J_all_commodity',function(ev){
         ev.stopPropagation();
@@ -153,86 +215,7 @@ $(function(){
             });
         }
     });
-    //删除按钮
-    doc.on('click','.J_delete',function(){
-        var orderBox = $(this).parents('.order-box');
-        var data = {
-            method:'delete.stock.order.product',
-            params:{
-                itemId:$(this).parents('.list-box').data('itemId'),
-                token:sessionStorage.getItem('token')
-            },
-            version:localStorage.getItem('version')
-        };
-        $.ajax({
-            type:'post',
-            url:'http://106.15.205.55/order',
-            data:JSON.stringify(data)
-        }).done(function(result){
-            if(result.code == 0){
-                orderBox.remove();
-                total();
-            }
-        });
-    });
-
-    //下单按钮
-    doc.on('click','.J_overbooking',function(){
-        var totalNum = $('.total-num').text();
-        var stockOrderIds = [];
-        if(totalNum > 0){
-            var products = [];
-            for(var i=0; i<$('.J_all_commodity:checked').length;i++){
-                var commodityIndex = $('.J_all_commodity:checked').eq(i).parents('.order-box');
-                var productId = commodityIndex.data('productId');
-                var itemId = commodityIndex.data('itemId');
-                var colorSizeInfo = [];
-                stockOrderIds.push(itemId);
-                for(var j=0; j< commodityIndex.find('.color-list').length; j++){
-                    var colorIndex = commodityIndex.find('.color-list').eq(j);
-                    if(colorIndex.find('.J_all_color').is(':checked')){
-                        var colorName = colorIndex.find('.color-name').text();
-                        for(var k=0; k < colorIndex.find('.J_single:checked').length; k++){
-                            var sizeIndex = colorIndex.find('.J_single:checked').eq(k);
-                            var sizeName = sizeIndex.parents('.size-list').find('.size-name').text();
-                            var sizeNum = Number(sizeIndex.parents('.size-list').find('.number').val());
-                            var price =  Number(sizeIndex.parents('.size-list').find('.number').val());
-                            colorSizeInfo.push({
-                                colorName:colorName,
-                                sizeName:sizeName,
-                                num:sizeNum,
-                                price:price
-                            });
-                        }
-                    }
-                }
-                products.push({
-                    colorSizeInfo:colorSizeInfo,
-                    productId:productId
-                });
-            }
-            var data = {
-                method:'create.order',
-                params:{
-                    products:products,
-                    stockOrderIds:stockOrderIds,
-                    token:sessionStorage.getItem('token')
-                },
-                version:localStorage.getItem('version')
-            };
-            sessionStorage.setItem('immediately',JSON.stringify(data));
-            window.location.href = 'addressListOrder.html?immediately';
-        }else{
-            //提示
-            layer.open({
-                content: '请先选择商品'
-                ,skin: 'msg'
-                ,time: 2 //2秒后自动关闭
-            });
-        }
-    });
-
-    $(document).on('click','.J_commodity_details',function(ev){
+    doc.on('click','.J_commodity_details',function(ev){
         ev.stopPropagation();
         var productId = $(this).data('productId');
         window.location.href = 'commodity.html?productId=' + productId;
