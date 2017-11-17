@@ -11,9 +11,14 @@ $(function(){
                 method:"login",
                 params:{
                     code:common.getUrlParam('code')
-                }
+                },
+                version:localStorage.getItem('version')
             };
-            common.officialAjax(data,function(result){
+            $.ajax({
+                type:'post',
+                url:'http://106.15.205.55/official',
+                data:JSON.stringify(data),
+            }).done(function(result){
                 if(result.code == 0){
                     sessionStorage.setItem('token',result.data.token);
                     sessionStorage.setItem('userName',result.data.userName);
@@ -21,7 +26,7 @@ $(function(){
                     sessionStorage.setItem('userId',result.data.userId);
                     init(result.data.token);
                 }
-            })
+            });
         }else{
             //提示
             layer.open({

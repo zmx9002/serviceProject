@@ -20,9 +20,16 @@ $(function(){
         function initBefore(code){
             var data = {
                 method:"login2",
-                params:{}
+                params:{
+                    code:code
+                },
+                version:localStorage.getItem('version')
             };
-            common.officialAjax(data,function(){
+            $.ajax({
+                type:'post',
+                url:'http://106.15.205.55/official',
+                data:JSON.stringify(data),
+            }).done(function(result){
                 if(result.code == 0){
                     sessionStorage.setItem('token',result.data.token);
                     sessionStorage.setItem('userName',result.data.userName);
