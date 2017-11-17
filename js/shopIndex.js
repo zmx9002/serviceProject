@@ -18,14 +18,9 @@ $(function(){
                 method:"login",
                 params:{
                     code:code
-                },
-                version:localStorage.getItem('version')
+                }
             };
-            $.ajax({
-                type:'post',
-                url:'http://106.15.205.55/official',
-                data:JSON.stringify(data),
-            }).done(function(result){
+            common.officialAjax(data,function(result){
                 if(result.code == 0){
                     sessionStorage.setItem('token',result.data.token);
                     sessionStorage.setItem('userName',result.data.userName);
@@ -33,7 +28,7 @@ $(function(){
                     sessionStorage.setItem('userId',result.data.userId);
                     init();
                 }
-            });
+            })
         }
 
         //店铺信息

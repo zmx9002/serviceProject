@@ -91,12 +91,15 @@ $(function(){
         //添加颜色
         doc.on('click','.J_add_color',function(){
             var content = '<input type="text" placeholder="请输入颜色" class="add-color-text"/>';
+            $('body').css({
+                'position':'fixed',
+                'width':'100%'
+            });
             //询问框
             layer.open({
                 content: content
                 ,btn: ['确定', '取消']
                 ,yes: function(index){
-                    debugger;
                     var val = $('.add-color-text').val();
                     if(val != ''){
                         var colorHtml = '<li data-color-id=""><span class="color-name">'+$('.add-color-text').val()+'</span><span class="tips">0</span></li>'
@@ -104,6 +107,9 @@ $(function(){
                         $('.color-tag li').eq($('.color-tag li').length -1).find('.tips').hide()
                     }
                     layer.close(index);
+                    $('body').css({
+                        'position':'relative'
+                    });
                 }
             });
             var html='<ul class="size-list"><li><div class="size-left" data-size-id="">均码</div>'
@@ -117,8 +123,12 @@ $(function(){
 
         //添加尺码
         doc.on('click','.J_add_size',function(){
-            var content = '<input type="text" placeholder="请输入尺码" class="add-size-text"/>';
+            var content = '<input type="text" placeholder="请输入尺码"  class="add-size-text"/>';
             var thisParents = $(this).parents('.size-list');
+            $('body').css({
+                'position':'fixed',
+                'width':'100%'
+            });
             //询问框
             layer.open({
                 content: content
@@ -141,6 +151,9 @@ $(function(){
                         thisParents.find('.J_add_size').before(html);
                     }
                     layer.close(index);
+                    $('body').css({
+                        'position':'relative'
+                    });
                 }
             });
         });
@@ -318,7 +331,10 @@ $(function(){
     //加入进货单显示弹窗
     doc.on('click','.J_addOrder',function(){
         $('.pop').show();
-        $('body').css('overflow','hidden');
+        $('body').css({
+            'overflow':'hidden',
+            'position':'relative'
+        });
         $('.pop-con').css({
             'opacity':1,
             'height':9.8 + 'rem'
@@ -330,7 +346,10 @@ $(function(){
     doc.on('click','.J_addOrder_now',function(){
         popUrl = '../html/addressListOrder.html';
         $('.pop').show();
-        $('body').css('overflow','hidden');
+        $('body').css({
+            'overflow':'hidden',
+            'position':'relative'
+        });
         $('.pop-con').css({
             'opacity':1,
             'height':9.8 + 'rem'
@@ -341,7 +360,10 @@ $(function(){
     //关闭弹窗
     doc.on('click','.J_close',function(){
         $('.pop').hide();
-        $('body').css('overflow','auto');
+        $('body').css({
+            'overflow':'auto',
+            'position':'relative'
+        });
         $('.pop-con').css({
             'opacity':0,
             'height':0

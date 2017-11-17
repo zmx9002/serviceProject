@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>商品详情</title>
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
-    <link type="text/css" rel="stylesheet" href="../style/common.css">
     <link rel="stylesheet" type="text/css" href="../plugins/layer_mobile/need/layer.css">
+    <link type="text/css" rel="stylesheet" href="../style/common.css">
     <link type="text/css" rel="stylesheet" href="../style/commodity.css">
 </head>
 <body>
@@ -34,15 +34,16 @@
 <!--商品详情模版-->
 <script type="text/html" id="commodityTpl">
     {{ if json.data }}
-    {{if json.data.storeInfo.hasFollow}}
-    <input type="hidden" value="1" name="hasFollow"/>
-    {{else}}
-    <input type="hidden" value="0" name="hasFollow"/>
+    {{if json.data.storeInfo}}
+        {{if json.data.storeInfo.hasFollow}}
+        <input type="hidden" value="1" name="hasFollow"/>
+        {{else}}
+        <input type="hidden" value="0" name="hasFollow"/>
+        {{/if}}
+        <input type="hidden" value="{{json.data.storeInfo.storeLogo}}" name="storeLogo"/>
+        <input type="hidden" value="{{json.data.storeInfo.storeName}}" name="storeName"/>
+        <input type="hidden" value="{{json.data.storeInfo.userId}}" name="userId"/>
     {{/if}}
-    <input type="hidden" value="{{json.data.storeInfo.storeLogo}}" name="storeLogo"/>
-    <input type="hidden" value="{{json.data.storeInfo.storeName}}" name="storeName"/>
-    <input type="hidden" value="{{json.data.storeInfo.userId}}" name="userId"/>
-
     <section class="banner-box" data-store-id="{{json.data.storeId}}">
         <div class="banner">
             <ul class="pic-list">
