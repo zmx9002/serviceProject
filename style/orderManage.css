@@ -86,6 +86,10 @@
     color: #666;
     padding-top: .2rem;
 }
+.price-box{
+    width: 1.86rem;
+    overflow: hidden;
+}
 .price-box h3{
     font-size: .28rem;
     font-weight: normal;

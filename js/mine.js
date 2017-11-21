@@ -3,14 +3,19 @@
  */
 $(function(){
     seajs.use(['common','template','layer'],function(common,template,layer){
-        if(sessionStorage.getItem('token')){
-            var token = sessionStorage.getItem('token');
-            init(token)
-        }else if(common.getUrlParam('code')){
+        var code = common.getQueryString('code');
+            if(sessionStorage.getItem('token')){
+                var token = sessionStorage.getItem('token');
+                init();
+            }else if(code){
+                initBefore(code)
+            }
+
+        function initBefore(code){
             var data = {
                 method:"login",
                 params:{
-                    code:common.getUrlParam('code')
+                    code:code
                 },
                 version:localStorage.getItem('version')
             };
@@ -24,24 +29,15 @@ $(function(){
                     sessionStorage.setItem('userName',result.data.userName);
                     sessionStorage.setItem('avatarUrl',result.data.avatarUrl);
                     sessionStorage.setItem('userId',result.data.userId);
-                    init(result.data.token);
+                    init();
                 }
-            });
-        }else{
-            //提示
-            layer.open({
-                content: '暂无信息'
-                ,skin: 'msg'
-                ,time: 2 //2秒后自动关闭
             });
         }
 
-        function init(token){
+        function init(){
             var data = {
                 method:'query.order.num',
-                params:{
-                    token:token
-                }
+                params:{}
             };
             common.ordersAjax(data,function(result){
                 showTips(result.data.ordered,0);

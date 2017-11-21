@@ -553,9 +553,7 @@ $(function () {
     //放大图片并轮播
     $(document).on('click','.J_show_pic',function(){
         $('.lightbox').show();
-        $('.pic-con').html('');
-        $('.pic-point').html('');
-        var html = $('.pic-list-con').html();
+        var html = $(this).parents('.order-box').find('.pic-list-con').html();
         $('.pic-con').html(html);
         $('body').css('overflow','hidden');
         bigPic();
@@ -622,6 +620,11 @@ $(function () {
     }
     $(document).on('click','.lightbox',function(){
         $('.lightbox').hide();
-        $('body').css('overflow','auto')
+        $('.pic-con').html('');
+        $('.pic-point').html('');
+        $('body').css('overflow','auto');
+        $('.pic-con').css({
+            'transform':'translateX('+ 0 + 'px)'
+        });
     });
 });

@@ -104,7 +104,7 @@ $(function(){
                 if (result.code == 0) {
                     //提示
                     layer.open({
-                        content: '确认订单成功！'
+                        content: '删除成功！'
                         ,skin: 'msg'
                         ,time: 2 //2秒后自动关闭
                     });

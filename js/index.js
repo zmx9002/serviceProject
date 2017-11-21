@@ -10,7 +10,7 @@ $(function(){
         //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5cbbfebdc5854c63&redirect_uri=http://www.mengxue-web.cn/serviceProject/html/index.html&appid=wx5cbbfebdc5854c63&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect
         //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx158a2d2aa408aa0f&redirect_uri=http://www.mengxue-web.cn/serviceProject/html/shopIndex.html?storeId=a413918cbe534d9d9f9d8e721b41efe4&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect
         //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx158a2d2aa408aa0f&redirect_uri=http://www.mengxue-web.cn/serviceProject/html/commodityList.html?sendId=a413918cbe534d9d9f9d8e721b41efe4&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect
-        var code = common.getQueryString('code');
+        var code = common.getQueryString('code');ftp://byw2900360001:@byw2900360001.my3w.com/serviceProject/js/index.js
         if(sessionStorage.getItem('token')){
             var token = sessionStorage.getItem('token');
             init();

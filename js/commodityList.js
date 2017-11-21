@@ -8,12 +8,14 @@ $(function(){
         var businessLineId = common.getQueryString('businessLineId');
         var sendId = common.getQueryString('sendId');
         var commodityNumber = 0;
+        var code = common.getQueryString('code');
         if(sessionStorage.getItem('token')){
             var token = sessionStorage.getItem('token');
             init();
-        }else if(common.getQueryString('code')){
-            initBefore(common.getQueryString('code'))
+        }else if(code){
+            initBefore(code)
         }
+
         function initBefore(code){
             var data = {
                 method:"login",
@@ -36,6 +38,7 @@ $(function(){
                 }
             });
         }
+
         function init() {
             if (title || businessLineId) {
                 if (title) {
