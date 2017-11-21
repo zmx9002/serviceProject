@@ -44,10 +44,19 @@ $(function(){
                 //数据渲染
                 common.officialAjax(shopData,function(result){
                     if (result.code == 0) {
+                        var logo = result.data.logo;
+                        var sign = result.data.storeSign;
                         $('.name').text(result.data.storeName);
-                        $('.avatar img').attr('src', result.data.logo);
                         $('.shop-vermicelli span').text(result.data.fansNum);
                         $('input[name="userId"]').val(result.data.userId);
+                        if(logo){
+                            $('.avatar img').attr('src', logo);
+                        }else{
+                            $('.avatar img').attr('src', '../images/shopLogo.png');
+                        }
+                        if(sign){
+                            $('.avatar-box').css('background-image','url('+ sign +')');
+                        }
                         if (result.data.hasFollow) {
                             $('.J_follow').text('已关注');
                         } else {

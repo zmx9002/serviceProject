@@ -174,6 +174,31 @@ $(function () {
         })
     }
 
+    //function updateSelfInfo(){
+    //    var data = null;
+    //    var oReq = new XMLHttpRequest();
+    //    oReq.open('GET', myAvatar, true);
+    //    oReq.responseType = "arraybuffer";
+    //    oReq.onreadystatechange = function(){
+    //        if(oReq.readyState == oReq.DONE){
+    //            var arraybuffer = oReq.response;
+    //            var byteArray = new Uint8Array(arraybuffer);
+    //            data = new File(byteArray,'avatar.jpg')
+    //            console.log(data);
+    //        }
+    //    };
+    //    oReq.send();
+    //
+    //
+    //    JIM.updateSelfAvatar({
+    //        'avatar' : data
+    //    }).onSuccess(function(data) {
+    //       console.log('avatar is success')
+    //    }).onFail(function(data) {
+    //        console.log('avatar is fails')
+    //    });
+    //}
+
 
     //聊天消息实时监听
     JIM.onMsgReceive(function(data) {
@@ -311,8 +336,6 @@ $(function () {
         if(files.length>0){
             formData.append(files[0].name,files[0]);
         }
-        console.log(formData);
-        // 发送消息
         JIM.sendSinglePic({
             'target_username': targetUserId,
             'image': formData,

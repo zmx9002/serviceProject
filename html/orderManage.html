@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0" />
     <title>订单管理</title>
+    <link rel="stylesheet" type="text/css" href="../style/common.css">
+    <link rel="stylesheet" type="text/css" href="../style/dropload.css">
+    <link rel="stylesheet" type="text/css" href="../plugins/layer_mobile/need/layer.css">
     <link type="text/css" rel="stylesheet" href="../style/orderManage.css">
-    <script type="text/javascript" src="../js/pulgins.js"></script>
-    <script type="text/javascript" src="../js/orderManage.js"></script>
 </head>
 <body>
     <section class="order-title">
@@ -31,6 +32,18 @@
         <i class="iconfont">&#xe615;</i>
         <p>返回顶部</p>
     </div>
+    <div class="lightbox">
+        <ul class="pic-con"></ul>
+        <div class="pic-point"></div>
+    </div>
+    <script type="text/javascript" src="../plugins/zepto.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/size.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../plugins/fastclick.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../js/common.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../plugins/sea.js" id="seaId"></script>
+    <script type="text/javascript" charset="utf-8" src="../plugins/path.config.js"></script>
+    <script type="text/javascript" src="../js/orderManage.js"></script>
+
 <script type="text/html" id="orderListTpl">
     {{if json.data && json.data.content}}
     {{each json.data.content as list}}
@@ -54,18 +67,23 @@
         <input type="hidden" value="{{list.payWay}}" name="payWay"/>
         <input type="hidden" value="{{list.status}}" name="status"/>
         <input type="hidden" value="{{list.storeId}}"  name="storeId"/>
-        <div class="order-num" data-order-id="{{list.orderId}}">
+        <div class="order-num J_order_details" data-order-id="{{list.orderId}}">
             订单编号：<span class="order-no">{{list.orderNo}}</span>
         </div>
-        <div class="order-name">{{list.storeName}}</div>
+        <div class="order-name J_order_details">{{list.storeName}}</div>
         {{each list.items as subList}}
-        <div class="order-commodity clearfix J_order_details">
-            <div class="commodity-pic f_left"><img src="{{subList.pictureUrl}}"/></div>
-            <div class="commodity-inof f_left">
+        <div class="order-commodity clearfix">
+            <div class="commodity-pic f_left J_show_pic" data-item-id="{{subList.itemId}}"><img src="{{subList.pictureUrl[0]}}"/></div>
+            <ul style="display: none" class="pic-list-con">
+                {{each subList.pictureUrl as picItem}}
+                <li><img src="{{picItem}}"/></li>
+                {{/each}}
+            </ul>
+            <div class="commodity-inof f_left J_order_details">
                 <h3 data-product-id="{{subList.productId}}" class="product-name">{{subList.productName}}</h3>
                 <p>货号:<span class="product-code">{{subList.productCode}}</span></p>
             </div>
-            <div class="price-box f_right">
+            <div class="price-box f_right J_order_details">
                 <h3><span>￥</span><span class="price">{{subList.price}}</span>/件</h3>
                 <p>共<span class="product-total-num"></span>件</p>
                 {{if list.delay}}
@@ -74,7 +92,7 @@
             </div>
         </div>
         {{each subList.colorSizeInfo as colorList}}
-        <div class="commodity-size-box">
+        <div class="commodity-size-box J_order_details">
             <div class="color">{{colorList.color}}</div>
             {{each colorList.size as sizeList}}
             <div class="size-info">尺码：<span class="size-name">{{sizeList.sizeName}}</span> <span class="size-num">{{sizeList.num}}</span></div>
@@ -82,10 +100,10 @@
         </div>
         {{/each}}
         {{/each}}
-        <div class="order-total">
+        <div class="order-total J_order_details">
             共<span class="product-total-num"></span>件，总计:<span class="red">￥</span><span class="total-price"></span><span class="freight">(运费￥{{if list.freight}}{{list.freight}}{{else}}0.00{{/if}})</span>
         </div>
-        {{if list.status == 1 || list.status == 2 || list.status == 4}}
+        {{if list.status == 1 || list.status == 2 || list.status == 4 || list.status == 6}}
         <div class="order-btn">
             {{if list.status == 1}}
             <a href="javascript:;" class="J_cancel_order block">取消订单</a>
@@ -94,7 +112,8 @@
             <a href="javascript:;" class="J_pay_order orange">付款</a>
             {{else if list.status == 4}}
             <a href="javascript:;" class="J_confirm_order orange">确认收货</a>
-            {{else}}
+            {{else if list.status == 6}}
+            <a href="javascript:;" class="J_delete_order block">删除订单</a>
             {{/if}}
         </div>
         {{/if}}
@@ -102,6 +121,8 @@
     {{/each}}
     {{/if}}
 </script>
+<script type="text/html" id="lightboxTpl">
 
+</script>
 </body>
 </html>

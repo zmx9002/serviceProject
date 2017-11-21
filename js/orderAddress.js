@@ -52,7 +52,7 @@ $(function () {
                     data.method = 'create.receiving.address';
                     common.ordersAjax(data,function(result){
                         if(result.code == 0){
-                            window.location.href = 'addressList.html'
+                           history.go(-1);
                         }
                     })
                 } else {
@@ -60,7 +60,7 @@ $(function () {
                     data.params.addressId = addressId;
                     common.ordersAjax(data,function(result){
                         if(result.code == 0){
-                            window.location.href = 'addressList.html'
+                            history.go(-1);
                         }
                     })
                 }

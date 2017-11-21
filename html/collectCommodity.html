@@ -49,7 +49,7 @@
                 <h3>{{item.product.productName}}</h3>
                 <p>货号:{{item.product.productCode}}</p>
                 <p class="price">
-                    批发价:<span>{{item.product.referencePrice}}</span>
+                    批发价:<span>&yen; {{if item.product.referencePrice}}{{item.product.referencePrice}}{{else}}0{{/if}}</span>
                 </p>
             </div>
             <a href="javascript:;" class="delete J_delete">取消收藏</a>

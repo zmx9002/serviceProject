@@ -102,7 +102,7 @@ $(function(){
                 ,yes: function(index){
                     var val = $('.add-color-text').val();
                     if(val != ''){
-                        var colorHtml = '<li data-color-id=""><span class="color-name">'+$('.add-color-text').val()+'</span><span class="tips">0</span></li>'
+                        var colorHtml = '<li><span class="color-name">'+$('.add-color-text').val()+'</span><span class="tips">0</span></li>'
                         $('.color-tag').append(colorHtml);
                         $('.color-tag li').eq($('.color-tag li').length -1).find('.tips').hide()
                     }
@@ -112,7 +112,7 @@ $(function(){
                     });
                 }
             });
-            var html='<ul class="size-list"><li><div class="size-left" data-size-id="">均码</div>'
+            var html='<ul class="size-list"><li><div class="size-left">均码</div>'
                 +'<div class="size-right">'
                 +'<a href="javascript:;" class="size-sub J_sub">-</a>'
                 +'<input type="number" value="" name="number" placeholder="0" class="size-num"/>'
@@ -199,7 +199,7 @@ $(function(){
                     }
                 };
                 if( popUrl == null){
-                    common.officialAjax(addOrderData,function(result){
+                    common.ordersAjax(addOrderData,function(result){
                         if(result.code == 0){
                             //提示
                             layer.open({
@@ -386,26 +386,21 @@ $(function(){
 
     //加
     doc.on('click','.J_add',function(){
-        var val = $(this).prev().val();
+        var val = Number($(this).prev().val());
         var index = $(this).parents('.size-list').index() - 1;
-        val++;
+        var step = Number($('.wholesale').find('span').text());
+        val+=step;
         $(this).prev().val(val);
-        totalNumber(index);
-        totalPrice();
-    });
-
-    //输入
-    doc.on('input','.size-num',function(){
-        var index = $(this).parents('.size-list').index() - 1;
         totalNumber(index);
         totalPrice();
     });
 
     //减
     doc.on('click','.J_sub',function(){
-        var val = $(this).next().val();
+        var val = Number($(this).next().val());
         var index = $(this).parents('.size-list').index() - 1;
-        val--;
+        var step = Number($('.wholesale').find('span').text());
+        val-=step;
         if(val <0){
             val = 0
         }

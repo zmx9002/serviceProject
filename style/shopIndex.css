@@ -31,7 +31,7 @@
     width: 100%;
     height: 4.4rem;
     overflow: hidden;
-    background: url("../images/shopIndex.jpg") no-repeat;
+    background-image: url("../images/shopIndex.jpg");
     background-size: 100% 4.4rem;
 }
 .avatar-box .avatar{

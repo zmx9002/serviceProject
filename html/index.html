@@ -9,7 +9,8 @@
 <body>
 
 <section class="search">
-    <a href="category.html" class="search-btn J_search_btn">搜索店铺、商品</a>
+    <input type="text" placeholder="搜索店铺、商品" class="J_search"/>
+    <a href="javascript:;" class="search-confirm J_search_result_btn">搜索</a>
 </section>
 <section class="link-box">
     <ul class="clearfix">
@@ -102,7 +103,7 @@
     {{if json.data && json.data.content}}
     {{each json.data.content as item}}
     <li data-store-id="{{item.storeId}}">
-        <img src="{{item.storeSign}}"/>
+        <img src="{{item.logo}}"/>
         <p>{{item.storeName}}</p>
     </li>
     {{/each}}

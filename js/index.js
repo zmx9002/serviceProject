@@ -2,7 +2,7 @@
  * Created by mengxue on 17/8/9.
  */
 $(function(){
-    seajs.use(['common','dropload','template'],function(common,dropload,template){
+    seajs.use(['common','dropload','template','layer'],function(common,dropload,template,layer){
         var doc = $(document);
         var itemIndex = 0; //选项卡索引值
         var tab1LoadEnd = false; //店铺列表数据加载是否完成
@@ -19,7 +19,7 @@ $(function(){
         }
         function initBefore(code){
             var data = {
-                method:"login2",
+                method:"login",
                 params:{
                     code:code
                 },
@@ -167,5 +167,24 @@ $(function(){
                 window.location.href = 'commodity.html?productId=' + productId;
             });
         }
+
+        //搜索
+        doc.on('click','.J_search_result_btn',function(){
+            var val = $('.J_search').val();
+            if(val == ''){
+                //提示
+                layer.open({
+                    content: '请输入搜索条件'
+                    ,skin: 'msg'
+                    ,time: 2 //2秒后自动关闭
+                });
+            }else{
+                var keyWord = $('.J_search').val();
+                window.location.href = 'category.html?keyWord=' + keyWord;
+                //默认显示店铺列表
+                $('.tab').find('a').eq(0).addClass('hover');
+                $('.tab-con').eq(0).show();
+            }
+        });
     });
 });

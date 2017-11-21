@@ -19,12 +19,13 @@ $(function(){
         };
 
         //删除按钮
-        doc.on('click','.J_delete',function(){
+        doc.on('click','.J_delete',function(ev){
+            ev.stopPropagation();
             var orderBox = $(this).parents('.order-box');
             var data = {
                 method:'delete.stock.order.product',
                 params:{
-                    itemId:$(this).parents('.list-box').data('itemId')
+                    itemId:$(this).parents('.order-box').data('itemId')
                 }
             };
             common.ordersAjax(data,function(result){

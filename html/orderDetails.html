@@ -79,6 +79,8 @@
     <a href="javascript:;" class="pay-btn J_pay_order">付款</a>
     {{else if json.status == 4}}
     <a href="javascript:;" class="pay-btn J_confirm_order">确认收货</a>
+    {{else if json.status == 6}}
+    <a href="javascript:;" class="pay-btn J_delete_order">删除订单</a>
     {{/if}}
 </script>
 </body>

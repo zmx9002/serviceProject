@@ -342,7 +342,7 @@ $(function () {
                     orderId: id,
                 }
             };
-            common.ordersAjax(data,function(){
+            common.ordersAjax(data,function(result){
                 if (result.code == 0) {
                     //提示
                     layer.open({
@@ -374,7 +374,7 @@ $(function () {
                     orderId: orderId,
                 }
             };
-            common.ordersAjax(data,function(){
+            common.ordersAjax(data,function(result){
                 if (result.code == 0) {
                     //询问框
                     layer.open({
@@ -417,6 +417,36 @@ $(function () {
                     setTimeout(function(){
                         window.location.href = 'orderManage.html?orderState=5'
                     },1500);
+                }else{
+                    //提示
+                    layer.open({
+                        content: result.message
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    });
+                }
+            });
+        });
+
+        //删除订单
+        $(document).on('click', '.J_delete_order', function () {
+            var id = $(this).parents('.tab').find('.order-num').data('orderId');
+            var _this = $(this).parents('.order-box');
+            var data = {
+                method: 'delete.stock.order',
+                params: {
+                    orderId: id,
+                }
+            };
+            common.ordersAjax(data,function(result){
+                if (result.code == 0) {
+                    //提示
+                    layer.open({
+                        content: '删除成功！'
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    });
+                    _this.remove();
                 }else{
                     //提示
                     layer.open({
@@ -519,4 +549,79 @@ $(function () {
     function getLocalTime(nS) {
         return new Date(parseInt(nS)).toLocaleString().replace(/\//g,"-");
     }
+
+    //放大图片并轮播
+    $(document).on('click','.J_show_pic',function(){
+        $('.lightbox').show();
+        $('.pic-con').html('');
+        $('.pic-point').html('');
+        var html = $('.pic-list-con').html();
+        $('.pic-con').html(html);
+        $('body').css('overflow','hidden');
+        bigPic();
+        var len = $('.pic-con').find('li').length;
+        for(var i=0;  i< len; i++){
+            var spanPoint = '<span></span>';
+            $('.pic-point').append(spanPoint)
+        }
+        $('.pic-point').find('span').eq(0).addClass('active');
+    });
+    function bigPic(){
+        var screenW = $(window).width(); //屏幕宽
+        var now = 0; //当前图片索引
+        var bannerBoxWidth =  $('.pic-con').find('li').length * screenW + 'px';
+        var width = 0; //卷起距离
+        $('.pic-con').css('width',bannerBoxWidth);
+
+        var startX,startY,pageX,changeX;
+        $('.pic-con').on('touchstart',function(ev){
+            $('.pic-con').css('transition','none');
+            var event = ev.targetTouches[0];
+            startX = event.pageX;
+            startY = event.pageY;
+            pageX = event.pageX;
+            changeX = width;
+        });
+
+        $('.pic-con').on('touchmove',function(ev){
+            var event = ev.targetTouches[0];
+            var moveEndX = event.pageX;
+            var moveEndY = event.pageY;
+            var X = moveEndX - startX;
+            var Y = moveEndY - startY;
+            var dis = event.pageX - pageX;
+            width = changeX + dis;
+            $('.pic-con').css({
+                'transform':'translateX('+ width + 'px)'
+            });
+            if( (Math.abs(X) > Math.abs(Y) && X < 0) || (Math.abs(X) > Math.abs(Y) && X > 0)){
+                ev.preventDefault();
+            }
+        });
+
+        $('.pic-con').on('touchend',function(){
+            now = width/screenW;
+            now =-Math.round(now);
+            if(now < 0){
+                now = 0;
+            }
+            if(now >= $('.pic-con').find('li').length - 1){
+                now = $('.pic-con').find('li').length -1;
+            }
+            scroll();
+        });
+
+        function scroll(){
+            width = -now * screenW;
+            $('.pic-con').css({
+                'transform':'translateX(' + width + 'px)',
+                'transition':'0.5s'
+            });
+            $('.pic-point').find('span').eq(now).addClass('active').siblings().removeClass('active');
+        }
+    }
+    $(document).on('click','.lightbox',function(){
+        $('.lightbox').hide();
+        $('body').css('overflow','auto')
+    });
 });

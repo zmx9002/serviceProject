@@ -46,9 +46,20 @@
                 url: "http://106.15.205.55/official",
                 data: JSON.stringify(data)
             }).done(function (result) {
-                $('.avatar img').attr('src', result.data.logo);
+                var logo = result.data.logo;
+                var sign = result.data.storeSign;
                 $('.name').text(result.data.storeName);
                 $('.shop-vermicelli span').text(result.data.fansNum);
+                $('input[name="userId"]').val(result.data.userId);
+                if(logo){
+                    $('.avatar img').attr('src', logo);
+                }else{
+                    $('.avatar img').attr('src', '../images/shopLogo.png');
+                }
+                if(sign){
+                    $('.avatar-box').css('background-image','url('+ sign +')');
+                }
+
                 if(result.data.hasFollow){
                     $('.J_follow').text('已关注');
                 }else{

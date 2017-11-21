@@ -422,3 +422,6 @@ section.banner-box{
     background: #fff;
     overflow: hidden;
 }
+.color-tag{
+    float: left;
+}

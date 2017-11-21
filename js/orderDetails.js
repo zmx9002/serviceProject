@@ -90,8 +90,29 @@ $(function(){
                 }
             })
         });
-    });
-    doc.on('click','.J_address',function(){
-        window.location.href = 'addressList.html?order=order'
+
+        //删除订单
+        doc.on('click', '.J_delete_order', function () {
+            var orderId = $('.order-details').find('.order-num').data('orderId');
+            var data = {
+                method: 'delete.stock.order',
+                params: {
+                    orderId: orderId,
+                },
+            };
+            common.ordersAjax(data,function(result){
+                if (result.code == 0) {
+                    //提示
+                    layer.open({
+                        content: '确认订单成功！'
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    });
+                    setTimeout(function(){
+                        window.location.href = 'orderManage.html?orderState=6'
+                    },1500);
+                }
+            })
+        });
     });
 });
