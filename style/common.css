@@ -14,6 +14,7 @@ body{
     font-family:"Microsoft YaHei",sans-serif;/*设备默认字体*/
     color:#333;
     background: #f5f8fd;
+    position: relative;
 }
 body,html{
     height: 100%;
@@ -118,16 +119,14 @@ body{
     font-size: .14rem;
     color: #fff;
 }
-
 @font-face {
     font-family: 'iconfont';  /* project id 405198 */
-    src: url('//at.alicdn.com/t/font_405198_gvvfp0f1ke0tqpvi.eot');
-    src: url('//at.alicdn.com/t/font_405198_gvvfp0f1ke0tqpvi.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_405198_gvvfp0f1ke0tqpvi.woff') format('woff'),
-    url('//at.alicdn.com/t/font_405198_gvvfp0f1ke0tqpvi.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_405198_gvvfp0f1ke0tqpvi.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_405198_dam0r0dvrhpvi.eot');
+    src: url('//at.alicdn.com/t/font_405198_dam0r0dvrhpvi.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_405198_dam0r0dvrhpvi.woff') format('woff'),
+    url('//at.alicdn.com/t/font_405198_dam0r0dvrhpvi.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_405198_dam0r0dvrhpvi.svg#iconfont') format('svg');
 }
-
 .iconfont{
     font-family:"iconfont" !important;
     font-style:normal;
@@ -409,4 +408,3 @@ body{
 .dropload-down{
     color: #d9d8d8;
 }
-

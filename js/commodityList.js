@@ -6,7 +6,9 @@ $(function(){
     seajs.use(['common','template','dropload'],function(common,template,dropload){
         var title = common.getQueryString('keyword');
         var businessLineId = common.getQueryString('businessLineId');
+        var storeId = common.getQueryString('storeId');
         var sendId = common.getQueryString('sendId');
+        var categoryId = common.getQueryString('category');
         var commodityNumber = 0;
         var code = common.getQueryString('code');
         if(sessionStorage.getItem('token')){
@@ -40,7 +42,22 @@ $(function(){
         }
 
         function init() {
-            if (title || businessLineId) {
+            if (sendId) {
+                var data = {
+                    method: 'query.mass.send.product',
+                    params: {
+                        sendId: sendId,
+                        token: sessionStorage.getItem('token')
+                    },
+                    version: localStorage.getItem('version')
+                };
+                common.officialAjax(data,function(result){
+                    if (result.code == 0) {
+                        var html = template('massListTpl', {json: result});
+                        $('#commodityList').html(html);
+                    }
+                })
+            }else{
                 if (title) {
                     doc.attr('title', title);
                     $('.search-btn').text(title);
@@ -58,7 +75,9 @@ $(function(){
                             method: 'home.page.product',
                             params: {
                                 keyWord: title,
+                                category:categoryId,
                                 businessLineId: businessLineId,
+                                storeId:storeId,
                                 pageNo: commodityNumber,
                                 pageSize: 10,
                             }
@@ -83,21 +102,6 @@ $(function(){
                         })
                     }
                 });
-            }else if(sendId){
-                var data = {
-                    method: 'query.mass.send.product',
-                    params: {
-                        sendId: sendId,
-                        token: sessionStorage.getItem('token')
-                    },
-                    version: localStorage.getItem('version')
-                };
-                common.officialAjax(data,function(result){
-                    if (result.code == 0) {
-                        var html = template('massListTpl', {json: result});
-                        $('#commodityList').html(html);
-                    }
-                })
             }
         }
     });

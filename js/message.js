@@ -259,7 +259,6 @@ $(function () {
             +'</li>'
         );
     }
-
     //聊天记录图片信息模版
     function sendPicMessages1(href,index,time,src) {
         JIM.getResource({
@@ -364,4 +363,16 @@ $(function () {
         });
     });
 
+    var oHeight = $(document).height(); //浏览器当前的高度
+    $(window).resize(function(){
+
+        if($(document).height() < oHeight){
+
+            $(".message-btn").css("position","static");
+        }else{
+
+            $(".message-btn").css("position","absolute");
+        }
+
+    });
 });

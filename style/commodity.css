@@ -353,7 +353,6 @@ section.banner-box{
     float: left;
 }
 .stock-order li .size-right{
-    width: 2.6rem;
     float: left;
 }
 
@@ -366,23 +365,21 @@ section.banner-box{
 .stock-order .size .size-add,.stock-order .size .size-sub{
     display: block;
     float: left;
-    width:.48rem;
-    height: .48rem;
+    width:.64rem;
+    height: .64rem;
     text-align: center;
-    line-height: .48rem;
+    line-height: .64rem;
     background: #eee;
-    margin-top: .1rem;
     color: #999;
-    font-size: .28rem;
+    font-size: .4rem;
 }
 .stock-order .size .size-num{
     display: block;
     float: left;
     width:1.24rem;
-    height: .48rem;
-    line-height: .48rem;
+    height: .64rem;
+    line-height: .64rem;
     background: #fff;
-    margin: .1rem .05rem;
     text-align: center;
     color: #222;
 }

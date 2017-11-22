@@ -9,7 +9,17 @@ $(function () {
        var storeNumber = 0;
        var keyWord = common.getQueryString('keyWord');
        var businessLineId = common.getQueryString('businessLineId');
-       if(keyWord || businessLineId){
+       var categoryTitle = common.getQueryString('categoryTitle');
+       var categoryId = common.getQueryString('categoryId');
+       if(keyWord){
+           $('title').text(keyWord);
+           $('.J_search').val(keyWord);
+       }else if(categoryTitle){
+           $('title').text(categoryTitle);
+           $('.J_search').val(categoryTitle);
+       }
+       pullData();
+       function pullData(){
            $('.J_search').val(keyWord);
            // 加载数据
            var dropload = $('.content').dropload({
@@ -50,11 +60,7 @@ $(function () {
                    });
                }
            });
-       }else{
-           setTimeout(function(){
-               $('input').trigger('click').focus();
-           },500)
-       };
+       }
 
        doc.on('click','.J_commodity',function(){
            if(common.getQueryString('keyWord')){

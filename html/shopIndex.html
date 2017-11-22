@@ -13,7 +13,10 @@
     <div class="name"></div>
     <div class="shop-vermicelli">粉丝：<span></span></div>
     <a href="javascript:;" class="follow J_follow" data-follow-id=""></a>
+    <i class="iconfont J_change1 btn-ico f_right">&#xe616;</i>
+    <i class="iconfont J_change2 btn-ico f_right">&#xe618;</i>
 </section>
+
 <section class="content">
     <div>
         <ul class="shop-list-box" id="commodityList"></ul>
@@ -40,7 +43,7 @@
 <script type="text/html" id="typeList">
     {{if json.data }}
     {{each json.data as item}}
-    <li><a href="../html/commodityList.html?storeId={{item.storeId}}&keyWord={{item.categoryName}}">{{item.categoryName}}</a></li>
+    <li><a href="../html/commodityList.html?storeId={{item.storeId}}&keyWord={{item.categoryName}}&category={{item.categoryId}}">{{item.categoryName}}</a></li>
     {{/each}}
     {{/if}}
 </script>

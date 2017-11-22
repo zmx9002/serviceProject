@@ -17,13 +17,18 @@
     height: .7rem;
     text-align: center;
 }
-.commodity-search a.btn-ico{
-    font-size: .5rem;
+.btn-ico{
+    display: block;
+    width: .7rem;
+    height: .7rem;
+    /*background: #ff7133;*/
+    font-size: .45rem;
     color: #fff;
-    margin-left: .35rem;
-    line-height: .68rem;
+    line-height: .7rem;
+    text-align: center;
+    transform: translate(-0.2rem,-0.7rem);
 }
-.commodity-search .J_change2{
+.J_change2{
     display: none;
 }
 

@@ -112,6 +112,7 @@ $(function(){
                     });
                 }
             });
+            $('.add-color-text').trigger('click').focus();
             var html='<ul class="size-list"><li><div class="size-left">均码</div>'
                 +'<div class="size-right">'
                 +'<a href="javascript:;" class="size-sub J_sub">-</a>'
@@ -156,6 +157,7 @@ $(function(){
                     });
                 }
             });
+            $('.add-size-text').trigger('click').focus();
         });
 
         //提交订单

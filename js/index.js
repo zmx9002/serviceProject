@@ -154,7 +154,8 @@ $(function(){
             //分类跳转
             doc.on('click','.link-box li',function(){
                 var businessLineId = $(this).data('businessLineId');
-                window.location.href = 'category.html?businessLineId=' + businessLineId;
+                var categoryTitle = $(this).data('title');
+                window.location.href = 'category.html?businessLineId=' + businessLineId + '&categoryTitle='+categoryTitle;
             });
             //店铺跳转
             doc.on('click','.shop-list li',function(){
