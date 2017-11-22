@@ -84,7 +84,7 @@
                 <p>货号:<span class="product-code">{{subList.productCode}}</span></p>
             </div>
             <div class="price-box f_right J_order_details">
-                <h3><span>￥</span><span class="price">{{subList.price}}</span>/件</h3>
+                <h3><span>￥</span><span class="price">{{if subList.price}}{{subList.price}}{{else}}0{{/if}}</span>/件</h3>
                 <p>共<span class="product-total-num"></span>件</p>
                 {{if list.delay}}
                 <span class="goods-state">{{list.delay}}</span>
