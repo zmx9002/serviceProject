@@ -363,16 +363,17 @@ $(function () {
         });
     });
 
-    var oHeight = $(document).height(); //浏览器当前的高度
-    $(window).resize(function(){
-
-        if($(document).height() < oHeight){
-
-            $(".message-btn").css("position","static");
-        }else{
-
-            $(".message-btn").css("position","absolute");
-        }
-
+    var bfscrolltop = $('body').scrollTop();//获取软键盘唤起前浏览器滚动部分的高度
+    var timer = null;
+    //解决第三方软键盘唤起时底部input输入框被遮挡问题
+    $(document).on('click','.message-text',function(){
+        //if(bodyHeight)
+        timer = setTimeout(function(){
+            $('body').scrollTop( $('body').height());//获取焦点后将浏览器内所有内容高度赋给浏览器滚动部分高度
+        },500)
+    });
+    $(document).on('blur','.message-text',function(){
+        clearInterval(timer);//清除计时器
+        $('body').scrollTop(bfscrolltop);//将软键盘唤起前的浏览器滚动部分高度重新赋给改变后的高度
     });
 });
