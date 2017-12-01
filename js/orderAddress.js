@@ -45,6 +45,7 @@ $(function () {
                         contactName: $('input[name="name"]').val(),
                         address: $('.address-area').text(),
                         fullAddress: $('.address-con').val(),
+                        logistics:$('.logistics').val(),
                         isDefault: isDefault
                     }
                 };
@@ -75,6 +76,7 @@ $(function () {
             $('input[name="mobile"]').val(str.mobile);
             $('.address-area').text(str.address);
             $('.address-con').val(str.fullAddress);
+            $('.logistics').val(str.logistics);
             if (str.isDefault) {
                 $('.J_defult').addClass('on').removeClass('off')
             } else {

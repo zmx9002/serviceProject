@@ -101,14 +101,14 @@
 }
 .address-list{
     width: 9.7rem;
-    height: 1.6rem;
+    height: 2rem;
     background: #fff;
     margin-bottom: .02rem;
     padding: .2rem;
 }
 .address-left{
     width: 6.8rem;
-    height: 1.2rem;
+    height: 1.6rem;
     float: left;
     overflow: hidden;
 }
@@ -134,9 +134,9 @@
 }
 .address-right{
     width: .24rem;
-    height: 1.2rem;
+    height: 1.6rem;
     float: left;
-    line-height: 1.2rem;
+    line-height: 1.6rem;
     color: #999;
     margin-right: .2rem;
 }

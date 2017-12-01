@@ -41,6 +41,7 @@ $(function(){
                     mobile : $(this).find('.address-mobile').text(),
                     address : $(this).find('.address-city').text(),
                     fullAddress : $(this).find('.address-full').text(),
+                    logistics:$(this).find('.logistics').text(),
                     isDefault:isDefault
                 };
                 sessionStorage.setItem('addressInfo',JSON.stringify(addressInfo));

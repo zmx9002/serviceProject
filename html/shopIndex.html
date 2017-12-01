@@ -43,7 +43,7 @@
 <script type="text/html" id="typeList">
     {{if json.data }}
     {{each json.data as item}}
-    <li><a href="../html/commodityList.html?storeId={{item.storeId}}&keyWord={{item.categoryName}}&category={{item.categoryId}}">{{item.categoryName}}</a></li>
+    <li><a href="../html/commodityList.html?storeId={{item.storeId}}&category={{item.categoryId}}">{{item.categoryName}}</a></li>
     {{/each}}
     {{/if}}
 </script>

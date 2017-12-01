@@ -44,12 +44,14 @@
     <ul>
         {{if json.data.content}}
         {{each json.data.content as item}}
+        {{if item.store}}
         <li class="J_message" data-user-id="{{item.store.userId}}">
             <div class="avatar"><img src="{{item.store.logo}}" class="logo"/></div>
             <div class="msg">
                 <h3 class="name">{{item.store.storeName}}</h3>
             </div>
         </li>
+        {{/if}}
         {{/each}}
         {{/if}}
     </ul>

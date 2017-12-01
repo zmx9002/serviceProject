@@ -21,6 +21,7 @@
 <script type="text/html" id="commodityListTpl">
     {{if json.data && json.data.content}}
         {{each json.data.content as item}}
+    {{if item.store}}
         <li data-store-id="{{item.store.storeId}}">
             <div class="avatar"><img src="{{item.store.logo}}"/></div>
             <div class="shop">
@@ -30,6 +31,7 @@
             <a href="../html/shopIndex.html?storeId={{item.store.storeId}}" class="in">进店看看</a>
             <a href="javascript:;" class="delete J_delete">取消关注</a>
         </li>
+    {{/if}}
         {{/each}}
     {{/if}}
 </script>

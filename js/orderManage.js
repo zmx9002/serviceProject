@@ -522,6 +522,7 @@ $(function () {
                 addressId:_this.find('input[name="addressId"]').val(),
                 address:_this.find('input[name="address"]').val(),
                 fullAddress:_this.find('input[name="fullAddress"]').val(),
+                logistics:_this.find('input[name="logistics"]').val(),
                 contactName:_this.find('input[name="contactName"]').val(),
                 contactMobile:_this.find('input[name="contactMobile"]').val(),
                 createTime:_this.find('input[name="createTime"]').val(),

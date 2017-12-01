@@ -17,6 +17,7 @@
         <div class="address-left">
             <p>收  件 人：<span class="address-name">{{item.contactName}}</span></p>
             <p>联系电话：<a href="javascript:;" class="address-mobile">{{item.contactMobile}}</a></p>
+            <p>期望物流：<span class="logistics">{{if item.logistics}}{{item.logistics}}{{else}}无{{/if}}</span></p>
             <p>
                 {{if item.isDefault == 1}}
                 <i class="isDefault">默认</i>
