@@ -57,7 +57,7 @@
     </section>
     <section class="shop-info">
         <div class="name" data-product-id="{{json.data.productId}}">{{json.data.productName}}</div>
-        <div class="price">批发价:<span>&yen;{{if json.data.referencePrice}}<i>{{json.data.referencePrice}}</i>{{else}}暂未设置{{/if}}</span></div>
+        <div class="price">批发价:<span{{if json.data.referencePrice}}&yen; <i>{{json.data.referencePrice}}</i>{{else}}暂未设置{{/if}}</span></div>
         <div class="wholesale">起批数：
             {{if json.data.wholesaleCount}}
             <span>{{json.data.wholesaleCount}}</span>
@@ -113,13 +113,9 @@
         <div class="shop-avatar"><img src="{{json.data.pictureUrls[0]}}"/></div>
         <div class="shop-name">
             <h3>{{if json.data.productName}}{{json.data.productName}}{{else}}未设置{{/if}}</h3>
-            <p>{{if json.data.productCode}}货号:{{json.data.productCode}}{{/if}} 批发价：<span class="size-price">&yen;
-                {{if json.data.referencePrice}}
-                <i>{{json.data.referencePrice}}</i>
-                {{else}}
-                暂未设置
-                {{/if}}
-            </span></p>
+            <p>{{if json.data.productCode}}货号:{{json.data.productCode}}未设置{{/if}}
+                批发价：<span class="size-price">{{if json.data.referencePrice}}&yen;<i>{{json.data.referencePrice}}</i>{{else}}暂未设置{{/if}}</span>
+            </p>
         </div>
         <a href="javascript:;" class="close J_close"><i class="iconfont">&#xe617;</i></a>
     </div>
@@ -200,7 +196,7 @@
             {{/if}}
         </div>
         <div class="total">
-            共<span class="total-num">0</span>件,<span class="total-price">0.00</span>元
+            共<span class="total-num">0</span>件,<span>&yen;</span><span class="total-price">0.00</span>元
         </div>
     </div>
     {{/if}}

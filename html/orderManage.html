@@ -81,12 +81,12 @@
                 {{/each}}
             </ul>
             <div class="commodity-inof f_left J_order_details">
-                <h3 data-product-id="{{subList.productId}}" class="product-name">{{subList.productName}}</h3>
-                <p>货号:<span class="product-code">{{subList.productCode}}</span></p>
+                <h3 data-product-id="{{subList.productId}}" class="product-name">{{if subList.productName}}{{subList.productName}}{{else}}商品名称暂未设置{{/if}}</h3>
+                <p>货号:<span class="product-code">{{if subList.productCode}}{{subList.productCode}}{{else}}暂未设置{{/if}}</span></p>
             </div>
             <div class="price-box f_right J_order_details">
-                <h3><span>￥</span><span class="price">{{if subList.price}}{{subList.price}}{{else}}0{{/if}}</span>/件</h3>
-                <p>共<span class="product-total-num"></span>件</p>
+                <h3><span>&yen;</span><span class="price">{{if subList.price}}{{subList.price}}{{else}}0{{/if}}</span>/件</h3>
+                <p>共<span class="product-total-num">0</span>件</p>
                 {{if list.delay}}
                 <span class="goods-state">{{list.delay}}</span>
                 {{else}}
