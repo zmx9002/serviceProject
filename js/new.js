@@ -3,7 +3,7 @@
  */
 $(function(){
     var doc = $(document);
-    seajs.use(['common','template','dropload'],function(common,template,dropload){
+    seajs.use(['common','template','dropload','layer'],function(common,template,dropload,layer){
         var pageNo = 0;
         var date = new Date();
         var today = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
@@ -83,6 +83,21 @@ $(function(){
             window.location.href = 'new.html?storeId=' + storeId1 +'&startDate='+ startDate1 + '&endDate=' + endDate1 + '&category=' + category1 + '&tab=3';
         });
 
+        //详情
+        doc.on('click','#commodityList li',function(){
+            var productId = $(this).data('productId');
+            var hasPermission = $(this).data('hasPermission');
+            if(hasPermission == 1){
+                window.location.href = 'commodity.html?productId='+ productId
+            }else{
+                //提示
+                layer.open({
+                    content: '请联系商家查看'
+                    ,skin: 'msg'
+                    ,time: 2 //2秒后自动关闭
+                });
+            }
+        })
     });
     //获取日期
     function getBeforeDate(n) {
@@ -141,10 +156,6 @@ $(function(){
         $('input[name="end"]').attr('min',val);
     });
 
-    //详情
-    doc.on('click','#commodityList li',function(){
-       var productId = $(this).data('productId');
-        window.location.href = 'commodity.html?productId='+productId
-    })
+
 
 });

@@ -87,11 +87,7 @@
             <div class="price-box f_right J_order_details">
                 <h3><span>&yen;</span><span class="price">{{if subList.price}}{{subList.price}}{{else}}0{{/if}}</span>/件</h3>
                 <p>共<span class="product-total-num">0</span>件</p>
-                {{if list.delay}}
-                <span class="goods-state">{{list.delay}}</span>
-                {{else}}
-                <span class="goods-state">现货</span>
-                {{/if}}
+                {{if subList.delay}}<span class="goods-state">延迟{{subList.delay}}天</span>{{else}}<span class="goods-state">现货</span>{{/if}}
             </div>
         </div>
         {{each subList.colorSizeInfo as colorList}}

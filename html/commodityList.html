@@ -25,8 +25,14 @@
     {{if json.data && json.data.content}}
     <ul class="shop-list-box">
         {{each json.data.content as item}}
-        <li data-product-id="{{item.productId}}">
-            <div class="avatar"><img src="{{item.pictureUrl}}"/></div>
+        <li data-product-id="{{item.productId}}"  data-has-permission="{{if item.hasPermission === false}}0{{else}}1{{/if}}">
+            <div class="avatar">
+                {{if item.hasPermission === false}}
+                <img src="../images/quanxianshezhi.png"/>
+                {{else}}
+                <img src="{{item.pictureUrl}}"/>
+                {{/if}}
+            </div>
             <div class="shop">
                 <h3>{{if item.productName}}{{item.productName}}{{else}}商品名称暂未设置{{/if}}</h3>
                 <p>货号:{{if item.productCode}}{{item.productCode}}{{else}}暂未设置{{/if}}</p>
@@ -44,8 +50,14 @@
     {{if json.data }}
     <ul class="shop-list-box">
         {{each json.data as item}}
-        <li data-product-id="{{item.productId}}">
-            <div class="avatar"><img src="{{item.pictureUrls[0]}}"/></div>
+        <li data-product-id="{{item.productId}}"  data-has-permission="{{if item.hasPermission === false}}0{{else}}1{{/if}}">
+            <div class="avatar">
+                {{if item.hasPermission === false}}
+                <img src="../images/quanxianshezhi.png"/>
+                {{else}}
+                <img src="{{item.pictureUrl}}"/>
+                {{/if}}
+            </div>
             <div class="shop">
                 <h3>{{if item.productName}}{{item.productName}}{{else}}商品名称暂未设置{{/if}}</h3>
                 <p>货号:{{if item.productCode}}{{item.productCode}}{{else}}暂未设置{{/if}}</p>

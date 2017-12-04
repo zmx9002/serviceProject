@@ -57,7 +57,7 @@
     </section>
     <section class="shop-info">
         <div class="name" data-product-id="{{json.data.productId}}">{{json.data.productName}}</div>
-        <div class="price">批发价:<span{{if json.data.referencePrice}}&yen; <i>{{json.data.referencePrice}}</i>{{else}}暂未设置{{/if}}</span></div>
+        <div class="price">批发价:<span>{{if json.data.referencePrice}}&yen; <i>{{json.data.referencePrice}}</i>{{else}}暂未设置{{/if}}</span></div>
         <div class="wholesale">起批数：
             {{if json.data.wholesaleCount}}
             <span>{{json.data.wholesaleCount}}</span>
@@ -95,7 +95,7 @@
         {{if json.data.productCode}}
         <p>货号：<span>{{if json.data.productCode}}{{json.data.productCode}}{{else}}未设置{{/if}}</span></p>
         {{/if}}
-        <p>材质面料：<span>{{json.data.material}}{{json.data.material}}{{else}}未设置{{/if}}</span></p>
+        <p>材质面料：<span>{{if json.data.material}}{{json.data.material}}{{else}}未设置{{/if}}</span></p>
         <p>季节：<span>{{if json.data.season}}{{json.data.season}}{{else}}未设置{{/if}}</span></p>
         <p>简介：</p>
         {{if json.data.introduction}}

@@ -3,7 +3,7 @@
  */
 $(function(){
     var doc = $(document);
-    seajs.use(['common','template','dropload'],function(common,template,dropload){
+    seajs.use(['common','template','dropload','layer'],function(common,template,dropload,layer){
         var title = common.getQueryString('keyword');
         var businessLineId = common.getQueryString('businessLineId');
         var storeId = common.getQueryString('storeId');
@@ -51,12 +51,17 @@ $(function(){
                     },
                     version: localStorage.getItem('version')
                 };
-                common.officialAjax(data,function(result){
-                    if (result.code == 0) {
-                        var html = template('massListTpl', {json: result});
-                        $('#commodityList').html(html);
+                $.ajax({
+                    type: 'post',
+                    url: 'http://106.15.205.55/product',
+                    data: JSON.stringify(data),
+                    success: function (result) {
+                        if (result.code == 0) {
+                            var html = template('massListTpl', {json: result});
+                            $('#commodityList').html(html);
+                        }
                     }
-                })
+                });
             }else{
                 if (title) {
                     doc.attr('title', title);
@@ -104,6 +109,21 @@ $(function(){
                 });
             }
         }
+        //详情
+        doc.on('click','#commodityList li',function(){
+            var productId = $(this).data('productId');
+            var hasPermission = $(this).data('hasPermission');
+            if(hasPermission == 1){
+                window.location.href = '../html/commodity.html?productId=' + productId;
+            }else{
+                //提示
+                layer.open({
+                    content: '请联系商家查看'
+                    ,skin: 'msg'
+                    ,time: 2 //2秒后自动关闭
+                });
+            }
+        })
     });
     //一排
     doc.on('click','.J_change1',function(ev){
@@ -119,10 +139,6 @@ $(function(){
         $('.J_change1').show();
         $(this).hide();
     });
-    //详情
-    doc.on('click','#commodityList li',function(){
-        var productId = $(this).data('productId');
-        window.location.href = '../html/commodity.html?productId=' + productId;
-    })
+
 
 });

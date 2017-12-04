@@ -217,7 +217,17 @@ $(function(){
         doc.on('click','#commodityList li',function(ev){
             ev.stopPropagation();
             var productId = $(this).data('productId');
-            window.location.href = 'commodity.html?productId=' + productId;
+            var hasPermission = $(this).data('hasPermission');
+            if(hasPermission == 1){
+                window.location.href = 'commodity.html?productId=' + productId;
+            }else{
+                //提示
+                layer.open({
+                    content: '请联系商家查看'
+                    ,skin: 'msg'
+                    ,time: 2 //2秒后自动关闭
+                });
+            }
         });
         var menu = true;
         //侧滑分类按钮
