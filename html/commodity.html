@@ -57,7 +57,7 @@
     </section>
     <section class="shop-info">
         <div class="name" data-product-id="{{json.data.productId}}">{{json.data.productName}}</div>
-        <div class="price">批发价:<span>&yen;{{if json.data.referencePrice}}<i>{{json.data.referencePrice}}</i>{{else}}0{{/if}}</span></div>
+        <div class="price">批发价:<span>&yen;{{if json.data.referencePrice}}<i>{{json.data.referencePrice}}</i>{{else}}暂未设置{{/if}}</span></div>
         <div class="wholesale">起批数：
             {{if json.data.wholesaleCount}}
             <span>{{json.data.wholesaleCount}}</span>
@@ -117,7 +117,7 @@
                 {{if json.data.referencePrice}}
                 <i>{{json.data.referencePrice}}</i>
                 {{else}}
-                0
+                暂未设置
                 {{/if}}
             </span></p>
         </div>
