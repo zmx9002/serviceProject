@@ -113,7 +113,7 @@
     {{if json.data && json.data.content}}
         {{each json.data.content as item}}
         <li data-product-id="{{item.productId}}">
-            <div class="avatar" data-has-permission="{{item.hasPermission}}">
+            <div class="avatar" data-has-permission="{{if item.hasPermission === false}}0{{else}}1{{/if}}">
                 {{if item.hasPermission === false}}
                 <img src="../images/quanxianshezhi.png"/>
                 {{else}}
@@ -121,10 +121,24 @@
                 {{/if}}
             </div>
             <div class="shop">
-                <h3>{{item.productName}}</h3>
-                <p>货号:{{item.productCode}}</p>
+                <h3>
+                    {{if item.productName}}{{item.productName}}{{else}}商品名称未设置{{/if}}
+                </h3>
+                <p>货号:
+                    {{if item.productCode}}
+                    {{item.productCode}}
+                    {{else}}
+                    暂未设置
+                    {{/if}}
+                </p>
                 <p class="price">
-                    批发价:<span>{{item.referencePrice}}</span>
+                    批发价:<span>
+                    {{if item.referencePrice}}
+                    {{item.referencePrice}}
+                    {{else}}
+                    暂未设置
+                    {{/if}}
+                </span>
                 </p>
             </div>
         </li>

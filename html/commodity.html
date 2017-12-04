@@ -93,12 +93,16 @@
 
     <section class="shop-container">
         {{if json.data.productCode}}
-        <p>货号：<span>{{json.data.productCode}}</span></p>
+        <p>货号：<span>{{if json.data.productCode}}{{json.data.productCode}}{{else}}未设置{{/if}}</span></p>
         {{/if}}
-        <p>材质面料：<span>{{json.data.material}}</span></p>
-        <p>季节：<span>{{json.data.season}}</span></p>
+        <p>材质面料：<span>{{json.data.material}}{{json.data.material}}{{else}}未设置{{/if}}</span></p>
+        <p>季节：<span>{{if json.data.season}}{{json.data.season}}{{else}}未设置{{/if}}</span></p>
         <p>简介：</p>
+        {{if json.data.introduction}}
         <p>{{json.data.introduction}}</p>
+        {{else}}
+        未设置
+        {{/if}}
     </section>
     {{/if}}
 </script>
@@ -108,7 +112,7 @@
     <div class="shop">
         <div class="shop-avatar"><img src="{{json.data.pictureUrls[0]}}"/></div>
         <div class="shop-name">
-            <h3>{{json.data.productName}}</h3>
+            <h3>{{if json.data.productName}}{{json.data.productName}}{{else}}未设置{{/if}}</h3>
             <p>{{if json.data.productCode}}货号:{{json.data.productCode}}{{/if}} 批发价：<span class="size-price">&yen;
                 {{if json.data.referencePrice}}
                 <i>{{json.data.referencePrice}}</i>

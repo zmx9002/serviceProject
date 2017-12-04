@@ -46,8 +46,8 @@
         <li data-product-id="{{item.productId}}">
             <div class="avatar"><img src="{{item.product.pictureUrl}}"/></div>
             <div class="shop">
-                <h3>{{item.product.productName}}</h3>
-                <p>货号:{{item.product.productCode}}</p>
+                <h3>{{if item.product.productName}}{{item.product.productName}}{{else}}商品名称暂未设置{{/if}}</h3>
+                <p>货号:{{if item.product.productCode}}{{item.product.productCode}}{{else}}暂未设置{{/if}}</p>
                 <p class="price">
                     批发价:<span>&yen; {{if item.product.referencePrice}}{{item.product.referencePrice}}{{else}}0{{/if}}</span>
                 </p>

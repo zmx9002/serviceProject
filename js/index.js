@@ -166,7 +166,7 @@ $(function(){
             doc.on('click','.commodity-list li',function(){
                 var productId = $(this).data('productId');
                 var hasPermission = $(this).find('.avatar').data('hasPermission');
-                if(hasPermission){
+                if(hasPermission == 1){
                     window.location.href = 'commodity.html?productId=' + productId;
                 }else{
                     //提示
@@ -178,6 +178,11 @@ $(function(){
                 }
             });
         }
+
+
+
+
+
 
         //搜索
         doc.on('click','.J_search_result_btn',function(){

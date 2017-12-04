@@ -24,17 +24,17 @@
         <div class="order-num" data-order-id="{{json.orderId}}">
             订单编号：{{json.orderNo}}
         </div>
-        <div class="order-name">{{json.storeName}}</div>
+        <div class="order-name">{{if json.storeName}}{{json.storeName}}{{else}}暂未设置{{/if}}</div>
         {{each json.items as list}}
         <div class="order-commodity clearfix">
             <div class="commodity-pic f_left"><img src="{{list.pictureUrl}}"/></div>
             <div class="commodity-inof f_left">
-                <h3>{{list.productName}}</h3>
-                <p>货号:{{list.productCode}}</p>
+                <h3>{{if list.productName}}{{list.productName}}{{else}}暂未设置{{/if}}</h3>
+                <p>货号:{{if list.productCode}}{{list.productCode}}{{else}}暂未设置{{/if}}</p>
             </div>
             <div class="price-box f_right">
-                <h3><span>￥</span><span class="price">{{list.price}}</span>/件</h3>
-                <p>共<span>{{json.productTotalNum}}</span>件</p>
+                <h3><span>￥</span><span class="price">{{if list.price}}{{list.price}}{{else}}0{{/if}}</span>/件</h3>
+                <p>共<span>{{if json.productTotalNum}}{{json.productTotalNum}}{{else}}0{{/if}}</span>件</p>
                 {{if json.delay}}
                 <span class="goods-state">{{json.delay}}</span>
                 {{else}}
@@ -53,7 +53,7 @@
         {{/each}}
         <div class="freight">运费：￥{{if json.freight}}{{json.freight}}{{else}}0.00{{/if}}</div>
         <div class="order-total">
-            共{{json.productTotalNum}}件，总计：<span>&yen;{{json.totalPrice}}</span>
+            共{{if json.productTotalNum}}{{json.productTotalNum}}{{else}}0{{/if}}件，总计：<span>&yen;{{if json.totalPrice}}{{json.totalPrice}}{{else}}0.00{{/if}}</span>
         </div>
         {{if json.logisticsWay == 1}}
         <div class="pay-way">物流方式：{{json.logisticsCompany}} <span class="blue">{{json.logisticsNo}}</span></div>
