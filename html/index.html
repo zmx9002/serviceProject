@@ -113,7 +113,7 @@
     {{if json.data && json.data.content}}
         {{each json.data.content as item}}
         <li data-product-id="{{item.productId}}">
-            <div class="avatar">
+            <div class="avatar" data-has-permission="{{item.hasPermission}}">
                 {{if item.hasPermission === false}}
                 <img src="../images/quanxianshezhi.png"/>
                 {{else}}

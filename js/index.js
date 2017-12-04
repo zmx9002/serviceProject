@@ -10,7 +10,7 @@ $(function(){
         //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx5cbbfebdc5854c63&redirect_uri=http://www.mengxue-web.cn/serviceProject/html/index.html&appid=wx5cbbfebdc5854c63&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect
         //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx158a2d2aa408aa0f&redirect_uri=http://www.mengxue-web.cn/serviceProject/html/shopIndex.html?storeId=a413918cbe534d9d9f9d8e721b41efe4&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect
         //https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx158a2d2aa408aa0f&redirect_uri=http://www.mengxue-web.cn/serviceProject/html/commodityList.html?sendId=a413918cbe534d9d9f9d8e721b41efe4&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect
-        var code = common.getQueryString('code');ftp://byw2900360001:@byw2900360001.my3w.com/serviceProject/js/index.js
+        var code = common.getQueryString('code');
         if(sessionStorage.getItem('token')){
             var token = sessionStorage.getItem('token');
             init();
@@ -165,7 +165,17 @@ $(function(){
             //商品跳转
             doc.on('click','.commodity-list li',function(){
                 var productId = $(this).data('productId');
-                window.location.href = 'commodity.html?productId=' + productId;
+                var hasPermission = $(this).find('.avatar').data('hasPermission');
+                if(hasPermission){
+                    window.location.href = 'commodity.html?productId=' + productId;
+                }else{
+                    //提示
+                    layer.open({
+                        content: '请联系商家查看'
+                        ,skin: 'msg'
+                        ,time: 2 //2秒后自动关闭
+                    });
+                }
             });
         }
 

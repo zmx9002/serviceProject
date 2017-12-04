@@ -20,32 +20,6 @@ $(function(){
                 $('#popCon').html(popHtml);
                 $('.tips').hide();
                 banner();
-            }else if(result.code == 3001){
-                //询问框
-                layer.open({
-                    content: '您没有访问该商品的权限，是否向店铺发起申请?'
-                    ,btn: ['确定', '取消']
-                    ,yes: function(index){
-                        layer.close(index);
-                        var visitData = {
-                            method:'apply.product.visible',
-                            params:{
-                                productId:productId
-                            }
-                        };
-                        common.officialAjax(visitData,function(result){
-                            if (result.code == 0) {
-                                //提示
-                                layer.open({
-                                    content: result.message
-                                    , skin: 'msg'
-                                    , time: 2 //2秒后自动关闭
-                                });
-                            }
-                        });
-                        history.go(-1);
-                    }
-                });
             }
         });
 
