@@ -218,14 +218,29 @@ $(function(){
             var storeLogo = $('input[name="storeLogo"]').val();
             var storeName = $('input[name="storeName"]').val();
             var userId = $('input[name="userId"]').val();
+            var storeId = $('.banner-box').data('storeId');
+
             if(hasFollow == 1){
                 window.location.href = 'message.html?way=commodity&logo=' + storeLogo + '&name=' + name +'&userId=' + userId +'&url=' + url;
             }else{
-                //提示
-                layer.open({
-                    content:'请先关注店铺'
-                    ,skin: 'msg'
-                    ,time: 3 //2秒后自动关闭
+                var data = {
+                    method:'create.follow.store',
+                    params:{
+                        storeId:storeId
+                    }
+                };
+                common.officialAjax(data,function(result){
+                    if(result.code == 0){
+                        $('.J_follow').text('已关注');
+                        window.location.href = 'message.html?way=commodity&logo=' + storeLogo + '&name=' + name +'&userId=' + userId +'&url=' + url;
+                    }else{
+                        //提示
+                        layer.open({
+                            content: result.message
+                            ,skin: 'msg'
+                            ,time: 2 //2秒后自动关闭
+                        });
+                    }
                 });
             }
 

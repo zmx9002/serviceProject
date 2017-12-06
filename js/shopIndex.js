@@ -156,17 +156,31 @@ $(function(){
             var name = $('.name').text();
             var userId = $('input[name="userId"]').val();
             var hasFollow = $('.J_follow').text();
-            if(hasFollow == '已关注'){
-                window.location.href = '../html/message.html?way=store&logo=' + logo + '&name=' + name +'&userId=' + userId
-            }else{
-                //提示
-                layer.open({
-                    content:'请先关注店铺'
-                    ,skin: 'msg'
-                    ,time: 3 //2秒后自动关闭
+            if(hasFollow == '关注'){
+                var data = {
+                    method:'create.follow.store',
+                    params:{
+                        storeId:storeId
+                    }
+                };
+                common.officialAjax(data,function(result){
+                    if(result.code == 0){
+                        $('.J_follow').text('已关注');
+                        window.location.href = '../html/message.html?way=store&logo=' + logo + '&name=' + name +'&userId=' + userId
+                    }else{
+                        //提示
+                        layer.open({
+                            content: result.message
+                            ,skin: 'msg'
+                            ,time: 2 //2秒后自动关闭
+                        });
+                    }
                 });
+            }else{
+                window.location.href = '../html/message.html?way=store&logo=' + logo + '&name=' + name +'&userId=' + userId
             }
-        })
+
+        });
         //店铺介绍跳转
         doc.on('click','.J_store_intro',function(ev){
             ev.stopPropagation();

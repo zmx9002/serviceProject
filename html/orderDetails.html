@@ -35,11 +35,7 @@
             <div class="price-box f_right">
                 <h3><span>&yen;</span><span class="price">{{list.price}}</span>/件</h3>
                 <p>共<span>{{json.productTotalNum}}</span>件</p>
-                {{if json.delay}}
                 <span class="goods-state">{{json.delay}}</span>
-                {{else}}
-                <span class="goods-state">现货</span>
-                {{/if}}
             </div>
         </div>
         {{each list.colorSizeInfo as colorList}}
@@ -51,9 +47,9 @@
         </div>
         {{/each}}
         {{/each}}
-        <div class="freight">运费：&yen;{{if json.freight}}{{json.freight}}{{else}}0.00{{/if}}</div>
+        <div class="freight">运费：&yen;{{json.freight}}</div>
         <div class="order-total">
-            共{{if json.productTotalNum}}{{json.productTotalNum}}{{else}}0{{/if}}件，总计：<span>&yen;{{if json.totalPrice}}{{json.totalPrice}}{{else}}0.00{{/if}}</span>
+            共{{json.productTotalNum}}件，总计：<span>&yen;{{json.totalPrice}}</span>
         </div>
         {{if json.logisticsWay == 1}}
         <div class="pay-way">物流方式：{{json.logisticsCompany}} <span class="blue">{{json.logisticsNo}}</span></div>

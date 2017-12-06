@@ -494,6 +494,7 @@ $(function () {
             var payTime = _this.find('input[name="payTime"]').val();
             var deliverTime = _this.find('input[name="deliverTime"]').val();
             var confirmTime = _this.find('input[name="confirmTime"]').val();
+            var delay = _this.find('.goods-state').text();
             if(orderTime){
                 orderTime =  getLocalTime(orderTime)
             }else{
@@ -526,6 +527,7 @@ $(function () {
                 contactName:_this.find('input[name="contactName"]').val(),
                 contactMobile:_this.find('input[name="contactMobile"]').val(),
                 createTime:_this.find('input[name="createTime"]').val(),
+                delay:delay,
                 orderTime: orderTime,
                 deliverTime:deliverTime,
                 confirmTime:confirmTime,
