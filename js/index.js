@@ -179,11 +179,6 @@ $(function(){
             });
         }
 
-
-
-
-
-
         //搜索
         doc.on('click','.J_search_result_btn',function(){
             var val = $('.J_search').val();

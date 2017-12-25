@@ -109,7 +109,7 @@
 <!--弹窗模板-->
 <script type="text/html" id="popTpl">
     {{if json.data}}
-    <div class="shop">
+    <div class="shop" data-user-type="{{json.data.userType}}">
         <div class="shop-avatar"><img src="{{json.data.pictureUrls[0]}}"/></div>
         <div class="shop-name">
             <h3>{{if json.data.productName}}{{json.data.productName}}{{else}}未设置{{/if}}</h3>

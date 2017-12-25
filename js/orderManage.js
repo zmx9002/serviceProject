@@ -573,7 +573,7 @@ $(function () {
         var bannerBoxWidth =  $('.pic-con').find('li').length * screenW + 'px';
         var width = 0; //卷起距离
         $('.pic-con').css('width',bannerBoxWidth);
-
+        var disX = 0;
         var startX,startY,pageX,changeX;
         $('.pic-con').on('touchstart',function(ev){
             $('.pic-con').css('transition','none');
@@ -591,6 +591,7 @@ $(function () {
             var X = moveEndX - startX;
             var Y = moveEndY - startY;
             var dis = event.pageX - pageX;
+            disX = event.pageX;
             width = changeX + dis;
             $('.pic-con').css({
                 'transform':'translateX('+ width + 'px)'
@@ -601,8 +602,14 @@ $(function () {
         });
 
         $('.pic-con').on('touchend',function(){
-            now = width/screenW;
-            now =-Math.round(now);
+            var X = disX - startX;
+            if( X < 0 ){
+                now = width/screenW;
+                now =-Math.round(now - 0.35);
+            }else{
+                now = width/screenW;
+                now =-Math.round(now + 0.35);
+            }
             if(now < 0){
                 now = 0;
             }

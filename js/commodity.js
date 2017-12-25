@@ -136,6 +136,47 @@ $(function(){
 
         //提交订单
         $(document).on('click','.J_confirm',function(){
+            var userType = $('.stock-order').find('.shop').data('userType');
+            if(userType == 3){
+                // 识别iOS
+                // if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+                //     var loadDateTime = new Date();
+                //     window.setTimeout(function() {
+                //         var timeOutDateTime = new Date();
+                //         if (timeOutDateTime - loadDateTime < 5000) {
+                //             // 跳转商城地址
+                //             window.location = "https://itunes.apple.com/cn/app/idxxxxxxxxx";
+                //         } else {
+                //             window.close();
+                //         }
+                //     },25);
+                //     // 尝试打开app
+                //     window.location = appScheme;
+                // }
+                // 识别android
+                // else if (navigator.userAgent.match(/android/i)) {
+                //     if (!navigator.userAgent.match(/MicroMessenger/i)) { // 识别微信
+                //         var state = null;
+                //         try {
+                //             // 尝试打开app
+                //             state = window.open(appScheme, '_blank');
+                //         } catch(e) {}
+                //         if (state) {
+                //             window.close();
+                //         } else {
+                //             // 跳转下载页
+                //             window.location = "下载页面url";
+                //         }
+                //
+                //     }
+                // }
+            }else{
+                confirmOrders()
+            }
+        });
+
+
+        function confirmOrders(){
             var totalNum = $('.total-num').text();
             var products = [];
             var colorSizeInfo = [];
@@ -210,7 +251,7 @@ $(function(){
                     ,time: 2 //2秒后自动关闭
                 });
             }
-        });
+        }
         //联系商家
         doc.on('click','.J_contact',function(){
             var url = $('.pic-list').find('img').eq(0).attr('src');
@@ -249,6 +290,7 @@ $(function(){
 
     var startX = 0;
     var startY = 0;
+    var disX = 0;
     //轮播图片
     function banner(){
         var screenW = $(window).width(); //屏幕宽
@@ -295,6 +337,7 @@ $(function(){
             var event = ev.targetTouches[0];
             var moveEndX = event.pageX;
             var moveEndY = event.pageY;
+            disX = event.pageX;
             var X = moveEndX - startX;
             var Y = moveEndY - startY;
             var dis = event.pageX - pageX;
@@ -308,8 +351,14 @@ $(function(){
         });
 
         $dom.on('touchend',function(){
-            now = width/screenW;
-            now =-Math.round(now);
+            var X = disX - startX;
+            if( X < 0 ){
+                now = width/screenW;
+                now =-Math.round(now - 0.35);
+            }else{
+                now = width/screenW;
+                now =-Math.round(now + 0.35);
+            }
             if(now < 0){
                 now = 0;
             }
